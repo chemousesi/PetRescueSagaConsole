@@ -1,11 +1,12 @@
 package Environnement;
 
-public class Plateau {
-    int lin, col;
-    String[][] plateau;
+import java.util.ArrayList;
+import Movible.*;
 
-    public Plateau(int lin, int col) {
-        this.plateau = new String[lin][col];
+public class Plateau {
+    private ArrayList<Case> cases[]; /// un tableau de liste car les colonnes peuvent ne pas avoir la meme taille.
+
+    public Plateau() {
 
     }
 

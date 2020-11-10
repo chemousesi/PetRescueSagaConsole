@@ -1,21 +1,17 @@
-public class Animal {
+package Movible;
+
+public class Animal extends Case {
     private String nom;
     private String icon;
-    private int valeur;
 
-    public Animal(String nom, String icon, int valeur) {
+    public Animal(double score, Couleur couleur, String nom, String icon, int valeur) {
+        super(score, couleur);
         this.nom = nom;
         this.icon = icon;
-        this.valeur = valeur;
-
     }
 
     public String getNom() {
         return nom;
-    }
-
-    public int getValeur() {
-        return valeur;
     }
 
     public String getIcon() {
