@@ -15,6 +15,10 @@ public class Joueur {
         this.niveauActuel = niveauActuel;
     }
 
+    public void incrementerNivActuel() {
+        this.niveauActuel++;
+    }
+
     public String getnom() {
         return nom;
     }
