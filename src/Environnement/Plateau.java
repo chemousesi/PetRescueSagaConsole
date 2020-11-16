@@ -1,13 +1,14 @@
 package Environnement;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import Movible.*;
 
-public class Plateau {
+public class Plateau implements Serializable {
     private Case cases[][];
 
-    public Plateau() {
-        cases = new Case[10][10];
+    public Plateau(Case[][] cases) {
+        this.cases = cases;
     }
 
     public void initialiserPlateau() {

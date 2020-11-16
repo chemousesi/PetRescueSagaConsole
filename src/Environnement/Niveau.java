@@ -9,7 +9,7 @@ public class Niveau implements Serializable {
     private Conditions conditionsDeGagner;
     private ArrayList<Aide> listDesAides;
 
-    Niveau(int numero, Plateau plateau, Conditions conditions, ArrayList<Aide> listeDesAides) {
+    public Niveau(int numero, Plateau plateau, Conditions conditions, ArrayList<Aide> listeDesAides) {
         this.numero = numero;
         this.plateau = plateau;
         this.conditionsDeGagner = conditions;
