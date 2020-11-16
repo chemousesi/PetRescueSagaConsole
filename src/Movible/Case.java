@@ -1,11 +1,25 @@
 package Movible;
 
-public class Case {
-    private Element element;
-    private boolean desactive;
+import java.io.Serializable;
 
-    public Case(Element element, boolean desactive) {
+public class Case implements Serializable {
+    private Element element;
+    private boolean active;
+
+    public Case(Element element, boolean active) {
         this.element = element;
-        this.desactive = desactive;
+        this.active = active;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

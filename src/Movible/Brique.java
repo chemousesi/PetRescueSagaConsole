@@ -8,4 +8,7 @@ public class Brique extends Element {
         this.couleur = couleur;
     }
 
+    public boolean estMobile() {
+        return true;
+    }
 }

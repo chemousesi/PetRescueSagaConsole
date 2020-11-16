@@ -1,0 +1,21 @@
+la logique du jeu:
+
+
+création de joueur : nom
+
+création des niveau:  
+       création des plateau pour un niveau
+
+
+boucle de jeu
+    donner la main au joueur 
+    selection de la case
+    si c'est une brique avec au moins 3 briques adjaçantes on valide, 
+    on fait la destruction de ses briques, on rajoute leur valeur au score du joueur, 
+    on réorganise le plateau (ca va aller dans le sens de la gravité puis à gauche)
+    {// on mets ici la logique de réorganisation 
+
+    }
+
+conditions pour gagner 
+plateau  = tableau array lists 

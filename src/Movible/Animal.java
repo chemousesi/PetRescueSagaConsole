@@ -4,7 +4,7 @@ public class Animal extends Element {
     private String nom;
     private String icon;
 
-    public Animal(int score, String nom, String icon, int valeur) {
+    public Animal(int score, String nom, String icon) {
         super(score);
         this.nom = nom;
         this.icon = icon;
@@ -18,4 +18,10 @@ public class Animal extends Element {
         return icon;
     }
 
+    @Override
+    public String toString() {
+        return Character.toString(nom.charAt(0)).toUpperCase();
+    }
+
 }
+// ajouter des animaux comme sous classes

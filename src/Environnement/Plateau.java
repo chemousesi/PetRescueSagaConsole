@@ -16,4 +16,9 @@ public class Plateau implements Serializable {
         // animaux, et aussi,
     }
 
+    public Case getCase(int l, int c) {
+        // il faut rajouter la condition de ne pas dépasser les limites du plateau
+        return cases[l][c];
+    }
+
 }
