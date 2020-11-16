@@ -7,4 +7,7 @@ public class Brique extends Case {
         // TODO Auto-generated constructor stub
     }
 
+    public boolean estMobile() {
+        return true;
+    }
 }

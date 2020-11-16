@@ -1,5 +1,7 @@
 package Movible;
 
+import Movible.Couleur;
+
 public class Animal extends Case {
     private String nom;
     private String icon;
@@ -18,4 +20,10 @@ public class Animal extends Case {
         return icon;
     }
 
+    @Override
+    public String toString() {
+        return Character.toString(nom.charAt(0)).toUpperCase();
+    }
+
 }
+// ajouter des animaux comme sous classes 
