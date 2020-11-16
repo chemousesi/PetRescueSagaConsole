@@ -1,5 +1,9 @@
 package Environnement;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class Jeu {
@@ -15,10 +19,24 @@ public class Jeu {
     }
 
     private static void telechargerNiveaux() {
-
+        final String niv = "Niveau";
+        ObjectInputStream reader;
+        for (int i = 1; i <= nbNiveaux; i++) {
+            try {
+                reader = new ObjectInputStream(new FileInputStream(niv + String.valueOf(i)));
+                niveau[i - 1] = (Niveau) reader.readObject();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private static void telechargerJoueurs() {
+
     }
 
     private static void telechargerParametresDuJeu() {

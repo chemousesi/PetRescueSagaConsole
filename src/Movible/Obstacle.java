@@ -1,10 +1,9 @@
 package Movible;
 
-public class Obstacle extends Brique {
+public class Obstacle extends Element {
 
-    Obstacle(double score, Couleur couleur) {
-        super(score, couleur);
-        // TODO Auto-generated constructor stub
+    Obstacle(Couleur couleur) {
+        super(couleur);
     }
 
     @Override
