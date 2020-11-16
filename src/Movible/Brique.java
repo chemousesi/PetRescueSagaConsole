@@ -1,10 +1,9 @@
 package Movible;
 
-public class Brique extends Case {
+public class Brique extends Element {
 
-    Brique(double score, Couleur couleur) {
+    Brique(int score, Couleur couleur) {
         super(score, couleur);
-        // TODO Auto-generated constructor stub
     }
 
 }

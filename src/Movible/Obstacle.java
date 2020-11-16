@@ -1,10 +1,9 @@
 package Movible;
 
-public class Obstacle extends Case {
+public class Obstacle extends Element {
 
-    Obstacle(double score, Couleur couleur) {
+    Obstacle(int score, Couleur couleur) {
         super(score, couleur);
-        // TODO Auto-generated constructor stub
     }
 
 }

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import Movible.*;
 
 public class Plateau {
-    private ArrayList<Case> cases[]; /// un tableau de liste car les colonnes peuvent ne pas avoir la meme taille.
+    private Case cases[][];
 
     public Plateau() {
-
+        cases = new Case[10][10];
     }
 
     public void initialiserPlateau() {

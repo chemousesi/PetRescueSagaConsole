@@ -1,5 +1,8 @@
+import Environnement.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Niveau niveau = new Niveau();
+        Joueur joueur = new Joueur("Nouredine");
     }
 }

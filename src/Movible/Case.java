@@ -1,10 +1,11 @@
 package Movible;
 
 public abstract class Case {
-    protected double score;
-    protected Couleur couleur;
+    private Element element;
+    private boolean desactive;
 
-    Case(double score, Couleur couleur) {
-        this.score = score;
+    Case(Element element, boolean desactive) {
+        this.element = element;
+        this.desactive = desactive;
     }
 }
