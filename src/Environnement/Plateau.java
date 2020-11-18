@@ -11,6 +11,8 @@ public class Plateau implements Serializable {
 
     public Plateau(Case[][] cases) {
         this.cases = cases;
+        lignes = 3;
+        colonnes = 5;
     }
 
     public Plateau(int l, int c) {

@@ -21,7 +21,7 @@ public class App {
         Joueur joueur = new Joueur("Nouredine");
 
         Plateau p = new Plateau(10, 10);
-        p.afficher();
-
+        p.afficher(); // affichage d'un plateau vide
+        niveau.getPlateau().afficher(); // affichage du plateau construit
     }
 }
