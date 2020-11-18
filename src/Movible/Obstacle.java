@@ -1,9 +1,9 @@
 package Movible;
 
-public class Obstacle extends Element {
+public class Obstacle extends Brique {
 
-    Obstacle(Couleur couleur) {
-        super(couleur);
+    public Obstacle(Couleur couleur) {
+        super(0, couleur);
     }
 
     @Override

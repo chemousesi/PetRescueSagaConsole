@@ -2,13 +2,17 @@ package Movible;
 
 import java.io.Serializable;
 
-public abstract class Case implements Serializable {
+public class Case implements Serializable {
     private Element element;
-    private boolean desactive;
+    private boolean active;
 
-    Case(Element element, boolean desactive) {
+    public Case() {
+
+    }
+
+    public Case(Element element, boolean active) {
         this.element = element;
-        this.desactive = desactive;
+        this.active = active;
     }
 
     public Element getElement() {
@@ -17,5 +21,24 @@ public abstract class Case implements Serializable {
 
     public void setElement(Element element) {
         this.element = element;
+    }
+
+    public boolean estVide() {
+        return (element == null);
+    }
+
+    public void vider() {
+        element = null;
+    }
+
+    @Override
+    public String toString() {
+
+        if (this.estVide()) {
+            return ".";
+        } else {
+            return element.toString();
+        }
+
     }
 }

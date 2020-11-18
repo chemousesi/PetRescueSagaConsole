@@ -4,8 +4,8 @@ public class Animal extends Element {
     private String nom;
     private String icon;
 
-    public Animal(int score, Couleur couleur, String nom, String icon, int valeur) {
-        super(score, couleur);
+    public Animal(int score, String nom, String icon) {
+        super(score);
         this.nom = nom;
         this.icon = icon;
     }

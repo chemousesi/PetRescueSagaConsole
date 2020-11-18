@@ -36,10 +36,19 @@ public class Jeu {
     }
 
     private static void telechargerJoueurs() {
+        // explain here
 
     }
 
     private static void telechargerParametresDuJeu() {
+        // explain here
 
     }
+
+    public static void Welcome() {
+        System.out.println("Bienvenus dans Pet Rescue saga");
+        // affichage du plateau
+
+    }
+
 }
