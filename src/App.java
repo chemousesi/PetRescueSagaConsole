@@ -32,8 +32,7 @@ public class App {
                 Joueur joueur = new Joueur("Nouredine");
                 Partie partie = Jeu.lancerPartie(joueur, niveau);
 
-                Plateau p = new Plateau(10, 10);
+                Plateau p = new Plateau(cases);
                 p.afficher(); // affichage d'un plateau vide
-                niveau.getPlateau().afficher(); // affichage du plateau construit
         }
 }
