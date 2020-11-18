@@ -18,6 +18,10 @@ public class Jeu {
         telechargerParametresDuJeu();
     }
 
+    public static Partie lancerPartie(Joueur joueur, Niveau niveau) {
+        return new Partie(niveau, joueur);
+    }
+
     private static void telechargerNiveaux() {
         final String niv = "Niveau";
         ObjectInputStream reader;

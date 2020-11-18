@@ -10,4 +10,12 @@ public class Conditions implements Serializable {
         this.nbAnimauxASauver = nbAnimauxASauver;
         this.nbPointsAGagner = nbPointsAGagner;
     }
+
+    public int getNbAnimauxASauver() {
+        return nbAnimauxASauver;
+    }
+
+    public int getNbPointsAGagner() {
+        return nbPointsAGagner;
+    }
 }

@@ -1,7 +1,6 @@
 package Environnement;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import Movible.*;
 
 public class Plateau implements Serializable {
