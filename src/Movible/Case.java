@@ -39,6 +39,9 @@ public class Case implements Serializable {
         } else {
             return element.toString();
         }
+    }
 
+    public boolean isActive() {
+        return active;
     }
 }

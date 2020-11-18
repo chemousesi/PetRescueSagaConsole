@@ -1,9 +1,10 @@
 package Movible;
 
 public class Obstacle extends Brique {
+    private String icon;/// pour la partie graphique.
 
-    public Obstacle(Couleur couleur) {
-        super(0, couleur);
+    Obstacle(int score, Couleur couleur) {
+        super(score, couleur);
     }
 
     @Override

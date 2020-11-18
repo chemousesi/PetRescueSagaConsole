@@ -1,11 +1,11 @@
 package Movible;
 
 public class Brique extends Element {
-    protected Couleur couleur;
+    private Couleur couleur;
 
-    Brique(int score, Couleur couleur) {
+    public Brique(int score, Couleur couleur) {
         super(score);
-        couleur = couleur;
+        this.couleur = couleur;
     }
 
     public boolean estMobile() {
