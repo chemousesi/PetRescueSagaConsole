@@ -9,6 +9,11 @@ public enum Couleur {
         this.couleur = couleur;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(couleur.charAt(0));
+    }
+
     public String getCouleur() {
         return couleur;
     }

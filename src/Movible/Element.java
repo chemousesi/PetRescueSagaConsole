@@ -12,4 +12,5 @@ public abstract class Element implements Serializable {
     public boolean estMobile() {
         return true;
     }
+
 }

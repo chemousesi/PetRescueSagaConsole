@@ -11,4 +11,9 @@ public class Brique extends Element {
     public boolean estMobile() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return couleur.toString();
+    }
 }
