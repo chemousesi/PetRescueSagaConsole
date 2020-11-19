@@ -10,8 +10,8 @@ public class Plateau implements Serializable {
 
     public Plateau(Case[][] cases) {
         this.cases = cases;
-        lignes = 3;
-        colonnes = 5;
+        lignes = cases.length;
+        colonnes = cases[0].length;
     }
 
     public Plateau(int l, int c) {

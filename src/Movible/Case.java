@@ -33,12 +33,16 @@ public class Case implements Serializable {
 
     @Override
     public String toString() {
-
-        if (this.estVide()) {
-            return ".";
+        if (this.active) {
+            if (this.estVide()) {
+                return ".";// quand elle est vide (peut être se vide dans le jeu)
+            } else {
+                return element.toString();
+            }
         } else {
-            return element.toString();
+            return " ";// quand c'est pas active on on affiche espace
         }
+
     }
 
     public boolean isActive() {
