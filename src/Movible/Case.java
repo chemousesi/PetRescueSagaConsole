@@ -2,7 +2,7 @@ package Movible;
 
 import java.io.Serializable;
 
-public class Case implements Serializable {
+public class Case implements Serializable, Cloneable {
     private Element element;
     private boolean active;
 
@@ -43,5 +43,11 @@ public class Case implements Serializable {
 
     public boolean isActive() {
         return active;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return super.clone();
     }
 }
