@@ -2,7 +2,7 @@ package Movible;
 
 import java.io.Serializable;
 
-public class Case implements Serializable {
+public class Case implements Serializable, Cloneable {
     private Element element;
     private boolean active;
 
@@ -53,5 +53,11 @@ public class Case implements Serializable {
         if (this.estUneBrique())
             return (Brique) this.getElement();
         return null;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+
+        return super.clone();
     }
 }

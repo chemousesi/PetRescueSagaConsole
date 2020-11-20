@@ -15,7 +15,8 @@ public class App {
                 // Plateau p = new Plateau(10, 10);
                 // p.afficher(); // affichage d'un plateau vide
                 niveau.getPlateau().afficher(); // affichage du plateau construit
-                niveau.getPlateau().detruire(2, 2);
+
+                niveau.getPlateau().detruire(0, 0);
                 niveau.getPlateau().afficher(); // affichage du plateau construit
                 // Jeu.menu();
         }
