@@ -33,7 +33,7 @@ public class Partie {
 
         /// ajouter des retouches ici.
         while (!estGagne() && !abondonner()) { /// tant que la parite n'es pas gagné
-            /// affichage du plateau.
+            this.niveauAJouer.getPlateau().afficher();
             System.out.println("Tapez les coordonnées d'une case : ");
             System.out.print("Tapez la coordonnée X : ");
             coordX = scanner.nextInt();
@@ -43,6 +43,7 @@ public class Partie {
             /// adjacente et elle rend le nombre de points gagnés.
             /// utiliser la méthode qui réorganise le plateau.
         }
+        /// traitement si le joueur à gagner ou abondonner.
         scanner.close();
     }
 }

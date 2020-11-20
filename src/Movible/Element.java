@@ -2,7 +2,7 @@ package Movible;
 
 import java.io.Serializable;
 
-public abstract class Element implements Serializable {
+public abstract class Element implements Serializable, Cloneable {
     protected int score;
 
     Element(int score) {
