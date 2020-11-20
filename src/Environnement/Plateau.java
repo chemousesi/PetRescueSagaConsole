@@ -27,16 +27,16 @@ public class Plateau implements Serializable {
     }
 
     public void initialiserPlateau() {
-        for (int l = 0; l < lignes; l++) {
-            for (int c = 0; c < colonnes; c++) {
+        for (int l = 0; l < lignes - 1; l++) {
+            for (int c = 0; c < colonnes - 1; c++) {
                 cases[l][c] = new Case();
             }
         }
     }
 
     public void afficher() {
-        for (int l = 0; l < lignes; l++) {
-            for (int c = 0; c < colonnes; c++) {
+        for (int l = 1; l < lignes - 1; l++) {
+            for (int c = 1; c < colonnes - 1; c++) {
                 System.out.print(cases[l][c] + " ");
             }
             System.out.println();
@@ -44,19 +44,28 @@ public class Plateau implements Serializable {
     }
 
     public static Case[][] plateauNiveau1() {
-        Case[][] cases1 = {
-                { new Case(new Brique(10, Couleur.violet), true), new Case(new Animal(20, "Chat", ""), true),
+        Case[][] cases = {
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false), },
+                { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Animal(20, "Chat", ""), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(null, false), new Case(null, false), },
+                { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Animal(20, "Chien", ""), true), new Case(null, false), },
+                { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.rouge), true),
                         new Case(new Brique(10, Couleur.rouge), true), new Case(null, false), },
-                { new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.jaune), true),
-                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Animal(20, "Chien", ""), true), },
-                { new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.jaune), true),
-                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.rouge), true), },
-                { new Case(new Brique(10, Couleur.vert), true), new Case(new Brique(10, Couleur.vert), true),
-                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.bleu), true), },
-                { new Case(new Brique(10, Couleur.vert), true), new Case(new Brique(10, Couleur.bleu), true),
-                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.bleu), true), } };
+                { new Case(null, false), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(null, false), },
+                { new Case(null, false), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(null, false), },
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false), } };
 
-        return cases1;
+        return cases;
     }
 
     public void detruireBrique(int l, int c, int acc) {
@@ -91,7 +100,7 @@ public class Plateau implements Serializable {
 
     }
 
-    public void detruireBriqueAux(int l, int c, Couleur couleur, int acc) {
+    public void detruireBriqueAux(int l, int c, Couleur couleur) {
 
         if (l >= lignes || l < 0 || c >= colonnes || c < 0) {
             System.out.println("mauvaise selection des indices ");
@@ -105,25 +114,45 @@ public class Plateau implements Serializable {
             return;
         } else if (!(cases[l][c].estUneBrique()))
             return;
-
-        if (acc >= 1 && (cases[l][c].getBrique().getCouleur() == couleur)) {
-            cases[l][c].vider();
+        else {
+            if (cases[l][c + 1].getBrique().getCouleur() == couleur) {
+                cases[l][c].vider();
+                detruireBriqueAux(l, c + 1, couleur);
+            }
+            if (cases[l][c - 1].getBrique().getCouleur() == couleur) {
+                cases[l][c].vider();
+                detruireBriqueAux(l, c + 1, couleur);
+            }
+            if (cases[l + 1][c].getBrique().getCouleur() == couleur) {
+                cases[l][c].vider();
+                detruireBriqueAux(l + 1, c, couleur);
+            }
+            if (cases[l - 1][c].getBrique().getCouleur() == couleur) {
+                cases[l][c].vider();
+                detruireBriqueAux(l - 1, c, couleur);
+            }
+            return;
         }
-
         // Couleur couleurCible = ((Brique) cases[l][c].getElement()).getCouleur();
-        detruireBriqueAux(l, c + 1, couleur, acc + 1);
-        detruireBriqueAux(l, c - 1, couleur, acc + 1);
-        detruireBriqueAux(l + 1, c, couleur, acc + 1);
-        detruireBriqueAux(l - 1, c, couleur, acc + 1);
 
     }
 
     public void detruire(int l, int c) {
-        if (cases[l][c].estUneBrique()) {
-            detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-        } else {
-            System.out.println("ce n'est pas une brique");
+        if (!cases[l][c].estVide()) {
+            if (cases[l][c].estUneBrique()) {
+                detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur());
+            } else {
+                System.out.println("ce n'est pas une brique");
+            }
         }
     }
+
+    // public void destruction(int l, int c) {
+    // if (!cases[l][c].estVide()) {
+    // if (cases[l][c].estUneBrique()) {
+
+    // }
+    // }
+    // }
 
 }
