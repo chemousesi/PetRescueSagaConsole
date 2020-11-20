@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Jeu {
     private static Niveau niveau[];
@@ -53,6 +55,30 @@ public class Jeu {
         System.out.println("Bienvenus dans Pet Rescue saga");
         // affichage du plateau
 
+    }
+
+    public static void menu() {
+        // premier menu du jeu
+        Scanner sc = new Scanner(System.in);
+        boolean validInput = false;
+        int choix = -1;// string pour traiter les mmauvaises
+        System.out.println("Faites un choix");
+        do {
+            System.out.println("1 - choix Joueur");
+            System.out.println("2 - choix Commencer une partie");
+            System.out.println("3 - commencer une partie");
+            System.out.println("0 - quitter");
+
+            System.out.println(" Votre choix : ");
+            try {
+                choix = Integer.parseInt(sc.next());
+                validInput = true;
+            } catch (Exception e) {
+                System.out.println("problème d'entrée");
+
+            }
+
+        } while ((!validInput) || (choix < 0) || (choix > 3));
     }
 
 }

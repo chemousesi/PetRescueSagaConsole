@@ -44,4 +44,14 @@ public class Case implements Serializable {
     public boolean isActive() {
         return active;
     }
+
+    public boolean estUneBrique() {
+        return this.getElement() instanceof Brique;
+    }
+
+    public Brique getBrique() {
+        if (this.estUneBrique())
+            return (Brique) this.getElement();
+        return null;
+    }
 }

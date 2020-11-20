@@ -20,7 +20,8 @@ public class Animal extends Element {
 
     @Override
     public String toString() {
-        return Character.toString(nom.charAt(0)).toUpperCase();
+        // return Character.toString(nom.charAt(0)).toUpperCase();
+        return "$";
     }
 
 }

@@ -12,6 +12,10 @@ public class Brique extends Element {
         return true;
     }
 
+    public Couleur getCouleur() {
+        return couleur;
+    }
+
     @Override
     public String toString() {
         return couleur.toString();
