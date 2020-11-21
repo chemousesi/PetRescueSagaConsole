@@ -95,14 +95,14 @@ public class Plateau implements Serializable {
     public void detruireBriqueAux(int l, int c, Couleur couleur, int acc) {
 
         if (l >= lignes || l < 0 || c >= colonnes || c < 0) {
-            System.out.println("mauvaise selection des indices ");
+            // System.out.println("mauvaise selection des indices ");
             return;
         } else if (!cases[l][c].isActive()) {
-            System.out.println("Case hors de jeu");
+            // System.out.println("Case hors de jeu");
             return;
 
         } else if (cases[l][c].estVide()) {
-            System.out.println("case vide");
+            // System.out.println("case vide");
             return;
 
         } else if (!(cases[l][c].estUneBrique()))
@@ -120,9 +120,27 @@ public class Plateau implements Serializable {
 
     }
 
+    public boolean briqueMmCouleuraAdj(int l, int c) {
+        // retourne le nombre de brique adjaçantes qui ont la meme couleure que la
+        // brique selectionnée
+        if (!cases[l][c].estUneBrique())
+            return false;
+        Couleur coul = cases[l][c].getBrique().getCouleur();
+
+        if (cases[l - 1][c].estUneBrique() && cases[l - 1][c].getBrique().getCouleur() == coul
+                || cases[l + 1][c].estUneBrique() && cases[l + 1][c].getBrique().getCouleur() == coul
+                || cases[l][c - 1].estUneBrique() && cases[l][c - 1].getBrique().getCouleur() == coul
+                || cases[l][c + 1].estUneBrique() && cases[l][c + 1].getBrique().getCouleur() == coul) {
+            return true;
+        }
+
+        return false;
+
+    }
+
     public void detruire(int l, int c) {
         if (cases[l][c].estUneBrique()) {
-            System.out.println("couleur selectionée est " + cases[l][c].getBrique().getCouleur());
+            System.out.println("Couleur selectionée est " + cases[l][c].getBrique().getCouleur());
             detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
         } else {
             System.out.println("ce n'est pas une brique");
