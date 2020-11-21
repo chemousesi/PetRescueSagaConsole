@@ -1,7 +1,8 @@
 package Movible;
 
 public enum Couleur {
-    jaune("Jaune"), rouge("Rouge"), bleu("Bleu"), violet("Violet"), vert("Vert"); /// penser à ajouter si nécessaires.
+    jaune("Jaune"), rouge("Rouge"), bleu("Bleu"), violet("Violet"), orange("Orange"); /// penser à ajouter si
+                                                                                      /// nécessaires.
 
     private String couleur;
 
