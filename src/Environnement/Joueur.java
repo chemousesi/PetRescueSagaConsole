@@ -33,4 +33,13 @@ public class Joueur {
         return niveauActuel;
     }
 
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.nomUtilisateur.equals(((Joueur) obj).nomUtilisateur);
+    }
+
 }

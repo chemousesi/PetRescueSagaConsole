@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Jeu {
-    private static Niveau niveau[];
+    /// ajouter des retouches ici une fois les niveaux sont implementés.
+    private static Niveau niveau[] = new Niveau[1];
     private static int nbNiveaux = 1;
     private static ArrayList<Joueur> joueurs;
     private static Parametres parameteresDuJeu;
@@ -30,7 +31,8 @@ public class Jeu {
         ObjectInputStream reader;
         for (int i = 1; i <= nbNiveaux; i++) {
             try {
-                reader = new ObjectInputStream(new FileInputStream(niv + String.valueOf(i)));
+                String path = "src/Niveaux/" + niv + String.valueOf(i) + ".txt";
+                reader = new ObjectInputStream(new FileInputStream(path));
                 niveau[i - 1] = (Niveau) reader.readObject();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -46,7 +48,8 @@ public class Jeu {
         final String niv = "Niveau";
         ObjectOutputStream writer;
         try {
-            writer = new ObjectOutputStream(new FileOutputStream(niv + String.valueOf(niveau.getNumero()) + ".txt"));
+            String path = "src/Niveaux/" + niv + String.valueOf(niveau.getNumero()) + ".txt";
+            writer = new ObjectOutputStream(new FileOutputStream(path));
             writer.writeObject(niveau);
             writer.close();
         } catch (IOException e) {
@@ -98,20 +101,24 @@ public class Jeu {
         System.out.println("Créer un nouveau joueur");
         System.out.print("Saisir votre nom : ");
         String nom = sc.nextLine();
-        System.out.print("Saisir votre nom d'utilisateur : ");
-        String nomUser = sc.nextLine();
+        Joueur joueur = null;
+        do {
+            System.out.print("Saisir votre nom d'utilisateur : ");
+            String nomUser = sc.nextLine();
+            joueur = new Joueur(nom, nomUser);
+        } while (joueurs.contains(joueur));
         sc.close();
-        return new Joueur(nom, nomUser);
+        return joueur;
     }
 
-    public Joueur chisirJoueur() {
+    public Joueur connexion() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Trouver un joueur");
+        System.out.println("Se connecter");
         System.out.println("votre pseudo : ");
-        String nom = sc.nextLine();
+        String nomUser = sc.nextLine();
         sc.close();
         for (Joueur joueur : joueurs) {
-            if (joueur.getnom().equals(nom))
+            if (joueur.getNomUtilisateur().equals(nomUser))
                 return joueur;
         }
         return null;

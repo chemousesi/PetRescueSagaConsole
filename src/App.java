@@ -13,6 +13,7 @@ public class App {
                 Joueur joueur = new Joueur("Nouredine", "dsfjds");
                 Partie partie = Jeu.lancerPartie(joueur, niveau);
                 // partie.jouerUnePartieModeTexte();
-                Jeu.sauvegarderNiveau(niveau);
+                // Jeu.sauvegarderNiveau(niveau);
+                Jeu.lancerJeu();
         }
 }
