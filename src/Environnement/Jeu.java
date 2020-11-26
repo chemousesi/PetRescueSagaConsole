@@ -81,4 +81,24 @@ public class Jeu {
         } while ((!validInput) || (choix < 0) || (choix > 3));
     }
 
+    public Joueur creerJoueur() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Créer un nouveau joueur");
+        System.out.println("Saisir votre Pseudo : ");
+        String nom = sc.nextLine();
+        sc.close();
+        return new Joueur(nom);
+    }
+
+    public Joueur chisirJoueur() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Trouver un joueur");
+        System.out.println("votre pseudo : ");
+        String nom = sc.nextLine():
+        sc.close();
+        for (Joueur joueur : joueurs) {
+            if  (joueur.getnom().equals(nom)) return joueur;
+        }
+        return null;
+    }
 }
