@@ -92,7 +92,10 @@ public class Plateau implements Serializable {
 
     }
 
-    public int detruireBriqueAux(int l, int c, Couleur couleur, int acc) {
+    public int detruireBriqueAux(int l, int c, Couleur couleur, int acc)
+    // acc c'est pour calculer le score qui se multiplie par 2 à chaque fois nous
+    // détruisons une brique
+    {
 
         if (l >= lignes || l < 0 || c >= colonnes || c < 0) {
             // System.out.println("mauvaise selection des indices ");
