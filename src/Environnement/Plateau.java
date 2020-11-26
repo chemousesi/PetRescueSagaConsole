@@ -92,32 +92,36 @@ public class Plateau implements Serializable {
 
     }
 
-    public void detruireBriqueAux(int l, int c, Couleur couleur, int acc) {
+    public int detruireBriqueAux(int l, int c, Couleur couleur, int acc)
+    // acc c'est pour calculer le score qui se multiplie par 2 à chaque fois nous
+    // détruisons une brique
+    {
 
         if (l >= lignes || l < 0 || c >= colonnes || c < 0) {
             // System.out.println("mauvaise selection des indices ");
-            return;
+            return acc;
         } else if (!cases[l][c].isActive()) {
             // System.out.println("Case hors de jeu");
-            return;
+            return acc;
 
         } else if (cases[l][c].estVide()) {
             // System.out.println("case vide");
-            return;
+            return acc;
 
         } else if (!(cases[l][c].estUneBrique()))
-            return;
+            return acc;
 
         if ((cases[l][c].getBrique().getCouleur() == couleur)) {
             cases[l][c].vider();
+            acc = acc * 2;
         } else
-            return;
+            return acc;
 
-        detruireBriqueAux(l, c + 1, couleur, acc + 1);
-        detruireBriqueAux(l, c - 1, couleur, acc + 1);
-        detruireBriqueAux(l + 1, c, couleur, acc + 1);
-        detruireBriqueAux(l - 1, c, couleur, acc + 1);
-
+        acc = detruireBriqueAux(l, c + 1, couleur, acc);
+        acc = detruireBriqueAux(l, c - 1, couleur, acc);
+        acc = detruireBriqueAux(l + 1, c, couleur, acc);
+        acc = detruireBriqueAux(l - 1, c, couleur, acc);
+        return acc;
     }
 
     public boolean briqueMmCouleuraAdj(int l, int c) {
@@ -138,13 +142,16 @@ public class Plateau implements Serializable {
 
     }
 
-    public void detruire(int l, int c) {
+    public int detruire(int l, int c) {
+        int score = 0;
         if (cases[l][c].estUneBrique()) {
             System.out.println("Couleur selectionée est " + cases[l][c].getBrique().getCouleur());
-            detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
+            score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
         } else {
             System.out.println("ce n'est pas une brique");
+            return 0;
         }
+        return score;
     }
 
     public void reorganiserPlateau() throws CloneNotSupportedException {

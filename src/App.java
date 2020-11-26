@@ -17,9 +17,11 @@ public class App {
                 // p.afficher(); // affichage d'un plateau vide
                 niveau.getPlateau().afficher(); // affichage du plateau construit
 
-                niveau.getPlateau().detruire(4, 2);
+                int score = niveau.getPlateau().detruire(4, 2);
+                score += niveau.getPlateau().detruire(1, 1);
+                score += niveau.getPlateau().detruire(0, 0);
                 niveau.getPlateau().afficher(); // affichage du plateau construit
-
+                System.out.println(" le score est " + score);
                 // Jeu.menu();
         }
 }
