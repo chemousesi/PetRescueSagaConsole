@@ -12,8 +12,6 @@ public class App {
                 Niveau niveau = new Niveau(1, new Plateau(cases), new Conditions(2, 140), new ArrayList<Aide>());
                 Joueur joueur = new Joueur("Nouredine");
                 Partie partie = Jeu.lancerPartie(joueur, niveau);
-                // Plateau p = new Plateau(10, 10);
-                // p.afficher(); // affichage d'un plateau vide
                 partie.jouerUnePartieModeTexte();
         }
 }

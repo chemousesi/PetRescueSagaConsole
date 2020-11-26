@@ -57,10 +57,9 @@ public class Jeu {
 
     }
 
-    public static void menu() {
+    public static void menuTextuelle() { /// amelioration du menu.
         // premier menu du jeu
         Scanner sc = new Scanner(System.in);
-        boolean validInput = false;
         int choix = -1;// string pour traiter les mmauvaises
         System.out.println("Faites un choix");
         do {
@@ -71,14 +70,14 @@ public class Jeu {
 
             System.out.println(" Votre choix : ");
             try {
-                choix = Integer.parseInt(sc.next());
-                validInput = true;
+                choix = sc.nextInt();
             } catch (Exception e) {
                 System.out.println("problème d'entrée");
 
             }
 
-        } while ((!validInput) || (choix < 0) || (choix > 3));
+        } while ((choix < 0) || (choix > 3));
+
     }
 
 }
