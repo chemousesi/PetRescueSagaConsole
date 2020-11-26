@@ -94,10 +94,11 @@ public class Jeu {
         Scanner sc = new Scanner(System.in);
         System.out.println("Trouver un joueur");
         System.out.println("votre pseudo : ");
-        String nom = sc.nextLine():
+        String nom = sc.nextLine();
         sc.close();
         for (Joueur joueur : joueurs) {
-            if  (joueur.getnom().equals(nom)) return joueur;
+            if (joueur.getnom().equals(nom))
+                return joueur;
         }
         return null;
     }
