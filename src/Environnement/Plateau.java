@@ -59,38 +59,6 @@ public class Plateau implements Serializable {
 
         return cases;
     }
-    /// voir si je peux la supprimer après.
-    // private void detruireBrique(int l, int c, int acc) {
-
-    // if (l >= lignes || l < 0 || c >= colonnes || c < 0) {
-    // System.out.println("mauvaise selection des indices ");
-    // return;
-    // } else if (!cases[l][c].isActive()) {
-    // System.out.println("Case hors de jeu");
-    // return;
-    // } else if (!(cases[l][c].getElement() instanceof Brique))
-    // return;
-
-    // if (acc > 1) {
-    // cases[l][c].vider();
-    // }
-
-    // Couleur couleurCible = ((Brique) cases[l][c].getElement()).getCouleur();
-
-    // if (((Brique) cases[l][c + 1].getElement()).getCouleur() == couleurCible) {
-    // detruireBrique(l, c + 1, acc + 1);
-    // }
-    // if (((Brique) cases[l][c - 1].getElement()).getCouleur() == couleurCible) {
-    // detruireBrique(l, c - 1, acc + 1);
-    // }
-    // if (((Brique) cases[l + 1][c].getElement()).getCouleur() == couleurCible) {
-    // detruireBrique(l + 1, c, acc + 1);
-    // }
-    // if (((Brique) cases[l - 1][c].getElement()).getCouleur() == couleurCible) {
-    // detruireBrique(l - 1, c, acc + 1);
-    // }
-
-    // }
 
     public int detruireBriqueAux(int l, int c, Couleur couleur, int acc)
     // acc c'est pour calculer le score qui se multiplie par 2 à chaque fois nous
