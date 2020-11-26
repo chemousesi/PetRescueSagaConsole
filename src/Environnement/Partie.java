@@ -19,7 +19,7 @@ public class Partie {
 
     private boolean estGagne() {
         return niveauAJouer.getConditionsDeGagner().getNbAnimauxASauver() == this.nbAnimauxSauves
-                && niveauAJouer.getConditionsDeGagner().getNbPointsAGagner() == this.nbPointsGangerParLeJoueur;
+                && niveauAJouer.getConditionsDeGagner().getNbPointsAGagner() >= this.nbPointsGangerParLeJoueur;
     }
 
     private boolean estPerdue() {
@@ -47,11 +47,13 @@ public class Partie {
             coordX = scanner.nextInt();
             System.out.print("Tapez la coordonnée Y : ");
             coordY = scanner.nextInt();
-            this.niveauAJouer.getPlateau().detruire(coordY, coordX);
+            this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
             this.niveauAJouer.getPlateau().reorganiserPlateau();
+            this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
         }
         if (estGagne()) {
-            /// ajouter les points gagnés au joueur
+            this.joueur.incrementerNivActuel();
+            System.out.println("Le partie est gagné !!!");
         } else if (abondonner) {
             /// traitement ici
         } else {

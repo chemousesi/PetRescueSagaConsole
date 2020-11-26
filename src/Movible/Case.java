@@ -53,6 +53,10 @@ public class Case implements Serializable, Cloneable {
         return this.getElement() instanceof Brique;
     }
 
+    public boolean estUnAnimal() {
+        return this.getElement() instanceof Animal;
+    }
+
     public Brique getBrique() {
         if (this.estUneBrique())
             return (Brique) this.getElement();

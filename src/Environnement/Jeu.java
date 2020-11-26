@@ -2,10 +2,11 @@ package Environnement;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Jeu {
@@ -38,6 +39,18 @@ public class Jeu {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void sauvegarderNiveau(Niveau niveau) {
+        final String niv = "Niveau";
+        ObjectOutputStream writer;
+        try {
+            writer = new ObjectOutputStream(new FileOutputStream(niv + String.valueOf(niveau.getNumero()) + ".txt"));
+            writer.writeObject(niveau);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -83,10 +96,12 @@ public class Jeu {
     public Joueur creerJoueur() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Créer un nouveau joueur");
-        System.out.println("Saisir votre Pseudo : ");
+        System.out.print("Saisir votre nom : ");
         String nom = sc.nextLine();
+        System.out.print("Saisir votre nom d'utilisateur : ");
+        String nomUser = sc.nextLine();
         sc.close();
-        return new Joueur(nom);
+        return new Joueur(nom, nomUser);
     }
 
     public Joueur chisirJoueur() {

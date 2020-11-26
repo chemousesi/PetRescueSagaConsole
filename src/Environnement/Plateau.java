@@ -114,23 +114,22 @@ public class Plateau implements Serializable {
         int score = 0;
         if (!cases[l][c].estVide()) {
             if (cases[l][c].estUneBrique()) {
-                if (!cases[l - 1][c].estVide()
+                if (!cases[l - 1][c].estVide() && cases[l - 1][c].estUneBrique()
                         && cases[l - 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
                     score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                } else if (!cases[l + 1][c].estVide()
+                } else if (!cases[l + 1][c].estVide() && cases[l + 1][c].estUneBrique()
                         && cases[l + 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
                     score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                } else if (!cases[l][c + 1].estVide()
+                } else if (!cases[l][c + 1].estVide() && cases[l][c + 1].estUneBrique()
                         && cases[l][c + 1].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
                     score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                } else if (!cases[l][c - 1].estVide()
+                } else if (!cases[l][c - 1].estVide() && cases[l][c - 1].estUneBrique()
                         && cases[l][c - 1].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
                     score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
                 }
 
             } else {
                 System.out.println("Ce n'est pas une brique !!!");
-                return 0;
             }
         } else {
             System.out.println("La case est vide !!!");
@@ -206,5 +205,19 @@ public class Plateau implements Serializable {
                 }
             }
         }
+    }
+
+    public int animalSauve() throws CloneNotSupportedException {
+        int nbAnimaux = 0;
+        for (int i = 1; i < cases[0].length - 1; i++) {
+            if (!cases[cases.length - 2][i].estVide() && cases[cases.length - 2][i].estUnAnimal()) {
+                nbAnimaux++;
+                cases[cases.length - 2][i].vider();
+            }
+        }
+        if (nbAnimaux != 0)
+            this.reorganiserPlateau();
+        return nbAnimaux;
+
     }
 }

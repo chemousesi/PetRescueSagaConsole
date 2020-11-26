@@ -6,10 +6,11 @@ public class Joueur {
     private int score;
     private int niveauActuel;
 
-    public Joueur(String nom) {
+    public Joueur(String nom, String nomUser) {
         this.nom = nom;
         this.score = 0;
         this.niveauActuel = 0;
+        this.nomUtilisateur = nomUser;
     }
 
     public void setniveauActuel(int niveauActuel) {
