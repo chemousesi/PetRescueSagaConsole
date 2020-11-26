@@ -14,10 +14,6 @@ public class App {
                 Partie partie = Jeu.lancerPartie(joueur, niveau);
                 // Plateau p = new Plateau(10, 10);
                 // p.afficher(); // affichage d'un plateau vide
-                niveau.getPlateau().afficher(); // affichage du plateau construit
-
-                niveau.getPlateau().detruire(0, 0);
-                niveau.getPlateau().afficher(); // affichage du plateau construit
-                // Jeu.menu();
+                partie.jouerUnePartieModeTexte();
         }
 }

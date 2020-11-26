@@ -22,28 +22,41 @@ public class Partie {
                 && niveauAJouer.getConditionsDeGagner().getNbPointsAGagner() == this.nbPointsGangerParLeJoueur;
     }
 
+    private boolean estPerdue() {
+        /// faire le traitement pour savoir si la partie est perdue.
+        return false;
+    }
+
     private boolean abondonner() {
         return this.abondonner;
     }
 
-    public void jouerUnePartieModeTexte() {
+    public void setAbondonner(boolean abondonner) {
+        this.abondonner = abondonner;
+    }
+
+    public void jouerUnePartieModeTexte() throws CloneNotSupportedException {
         Scanner scanner = new Scanner(System.in);
         int coordX, coordY;
-        String reponseAbondone;
 
         /// ajouter des retouches ici.
-        while (!estGagne() && !abondonner()) { /// tant que la parite n'es pas gagné
+        while (!estGagne() && !abondonner() && !estPerdue()) { /// tant que la parite n'es pas gagné
             this.niveauAJouer.getPlateau().afficher();
             System.out.println("Tapez les coordonnées d'une case : ");
             System.out.print("Tapez la coordonnée X : ");
             coordX = scanner.nextInt();
             System.out.print("Tapez la coordonnée Y : ");
             coordY = scanner.nextInt();
-            /// utiliser la méthode qui essaye de détruire la case sélectionnée et ces cases
-            /// adjacente et elle rend le nombre de points gagnés.
-            /// utiliser la méthode qui réorganise le plateau.
+            this.niveauAJouer.getPlateau().detruire(coordY, coordX);
+            this.niveauAJouer.getPlateau().reorganiserPlateau();
         }
-        /// traitement si le joueur à gagner ou abondonner.
+        if (estGagne()) {
+            /// ajouter les points gagnés au joueur
+        } else if (abondonner) {
+            /// traitement ici
+        } else {
+            System.out.println("La partie est perdue !!");
+        }
         scanner.close();
     }
 }
