@@ -9,7 +9,7 @@ public class Joueur {
     public Joueur(String nom, String nomUser) {
         this.nom = nom;
         this.score = 0;
-        this.niveauActuel = 0;
+        this.niveauActuel = 1;
         this.nomUtilisateur = nomUser;
     }
 

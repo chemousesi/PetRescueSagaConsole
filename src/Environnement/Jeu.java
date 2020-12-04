@@ -22,8 +22,40 @@ public class Jeu {
         telechargerParametresDuJeu();
     }
 
-    public static Partie lancerPartie(Joueur joueur, Niveau niveau) {
-        return new Partie(niveau, joueur);
+    public static Partie lancerPartie(Joueur joueur) {
+        return new Partie(niveau[joueur.getniveauActuel() - 1], joueur);
+    }
+
+    public static void joueurEnModeConsole() {
+        welcome();
+        String[] premiersChoix = { "1- Connexion", "2- Inscription", "3- Quitter" };
+        int choix_1 = menuTextuelle(premiersChoix);
+        Joueur joueur = null;
+        switch (choix_1) {
+            case 1:/// connexion
+                joueur = connexion();
+                break;
+
+            case 2:/// inscription
+                joueur = creerJoueur();
+                break;
+            case 3:/// quitter
+                System.exit(0);
+                break;
+        }
+        String[] deuxiemeChoix = { "1- Jouer", "2- Historique", "3- Help", "4- Deconnexion" };
+        int choix_2 = menuTextuelle(deuxiemeChoix);
+        switch (choix_2) {
+            case 1:/// jouer.
+                lancerPartie(joueur);
+                break;
+            case 2:/// historique.
+                break;
+            case 3:/// affichage d'un manuel.
+                break;
+            case 4: /// deconnexion.
+                break;
+        }
     }
 
     private static void telechargerNiveaux() {
@@ -67,36 +99,28 @@ public class Jeu {
 
     }
 
-    public static void Welcome() {
+    public static void welcome() {
         System.out.println("Bienvenus dans Pet Rescue saga");
         // affichage du plateau
 
     }
 
-    public static void menuTextuelle() { /// amelioration du menu.
+    public static int menuTextuelle(String[] tabDeChoix) { /// amelioration du menu.
         // premier menu du jeu
         Scanner sc = new Scanner(System.in);
-        int choix = -1;// string pour traiter les mmauvaises
-        System.out.println("Faites un choix");
+        for (String choix : tabDeChoix) {
+            System.out.println(choix);
+        }
+        int choix = 0;
         do {
-            System.out.println("1 - choix Joueur");
-            System.out.println("2 - choix Commencer une partie");
-            System.out.println("3 - commencer une partie");
-            System.out.println("0 - quitter");
-
-            System.out.println(" Votre choix : ");
-            try {
-                choix = sc.nextInt();
-            } catch (Exception e) {
-                System.out.println("problème d'entrée");
-
-            }
-
-        } while ((choix < 0) || (choix > 3));
-
+            System.out.print("Tapez votre choix : ");
+            choix = sc.nextInt();
+        } while (choix < 1 || choix > tabDeChoix.length);
+        sc.close();
+        return choix;
     }
 
-    public Joueur creerJoueur() {
+    private static Joueur creerJoueur() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Créer un nouveau joueur");
         System.out.print("Saisir votre nom : ");
@@ -111,7 +135,7 @@ public class Jeu {
         return joueur;
     }
 
-    public Joueur connexion() {
+    private static Joueur connexion() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Se connecter");
         System.out.println("votre pseudo : ");
