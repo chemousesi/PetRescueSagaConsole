@@ -14,7 +14,10 @@ public class Jeu {
     private static Niveau niveau[] = new Niveau[1];
     private static int nbNiveaux = 1;
     private static ArrayList<Joueur> joueurs;
+    private static int nbJoueurs = 0;
     private static Parametres parameteresDuJeu;
+    /// utilisé dans toutes les lectures.
+    private static Scanner sc = new Scanner(System.in);
 
     public static void lancerJeu() {/// elle fait la configuration nécessaire pour lancer le jeu.
         telechargerNiveaux();
@@ -22,11 +25,11 @@ public class Jeu {
         telechargerParametresDuJeu();
     }
 
-    public static Partie lancerPartie(Joueur joueur) {
+    private static Partie lancerPartie(Joueur joueur) {
         return new Partie(niveau[joueur.getniveauActuel() - 1], joueur);
     }
 
-    public static void joueurEnModeConsole() {
+    public static void joueurEnModeConsole() throws UserNotFound, CloneNotSupportedException {
         welcome();
         String[] premiersChoix = { "1- Connexion", "2- Inscription", "3- Quitter" };
         int choix_1 = menuTextuelle(premiersChoix);
@@ -43,11 +46,14 @@ public class Jeu {
                 System.exit(0);
                 break;
         }
+        if (joueur == null)
+            throw new UserNotFound();
         String[] deuxiemeChoix = { "1- Jouer", "2- Historique", "3- Help", "4- Deconnexion" };
         int choix_2 = menuTextuelle(deuxiemeChoix);
         switch (choix_2) {
             case 1:/// jouer.
-                lancerPartie(joueur);
+                Partie partie = lancerPartie(joueur);
+                partie.jouerUnePartieModeTexte();
                 break;
             case 2:/// historique.
                 break;
@@ -90,7 +96,38 @@ public class Jeu {
     }
 
     private static void telechargerJoueurs() {
-        // explain here
+        joueurs = new ArrayList<>();
+        ObjectInputStream reader;
+        final String joueur = "Joueur";
+        for (int i = 1; i <= nbJoueurs; i++) {
+            try {
+                String path = "src/Joueurs/" + joueur + String.valueOf(i) + ".txt";
+                reader = new ObjectInputStream(new FileInputStream(path));
+                joueurs.add((Joueur) reader.readObject());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void sauvegarderJoueurs() {
+        final String joueur = "Niveau";
+        ObjectOutputStream writer = null;
+
+        try {
+            for (int i = 1; i <= nbJoueurs; i++) {
+                String path = "src/Joueurs/" + joueur + String.valueOf(i) + ".txt";
+                writer = new ObjectOutputStream(new FileOutputStream(path));
+                writer.writeObject(joueurs.get(i - 1));
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -99,15 +136,13 @@ public class Jeu {
 
     }
 
-    public static void welcome() {
+    private static void welcome() {
         System.out.println("Bienvenus dans Pet Rescue saga");
         // affichage du plateau
-
     }
 
-    public static int menuTextuelle(String[] tabDeChoix) { /// amelioration du menu.
+    private static int menuTextuelle(String[] tabDeChoix) { /// amelioration du menu.
         // premier menu du jeu
-        Scanner sc = new Scanner(System.in);
         for (String choix : tabDeChoix) {
             System.out.println(choix);
         }
@@ -116,14 +151,13 @@ public class Jeu {
             System.out.print("Tapez votre choix : ");
             choix = sc.nextInt();
         } while (choix < 1 || choix > tabDeChoix.length);
-        sc.close();
         return choix;
     }
 
     private static Joueur creerJoueur() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Créer un nouveau joueur");
         System.out.print("Saisir votre nom : ");
+        sc.next();
         String nom = sc.nextLine();
         Joueur joueur = null;
         do {
@@ -131,19 +165,20 @@ public class Jeu {
             String nomUser = sc.nextLine();
             joueur = new Joueur(nom, nomUser);
         } while (joueurs.contains(joueur));
-        sc.close();
+        joueurs.add(joueur);
+        nbJoueurs++;
         return joueur;
     }
 
     private static Joueur connexion() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Se connecter");
-        System.out.println("votre pseudo : ");
-        String nomUser = sc.nextLine();
-        sc.close();
+        System.out.print("votre pseudo : ");
+        String nomUser = sc.next();
         for (Joueur joueur : joueurs) {
-            if (joueur.getNomUtilisateur().equals(nomUser))
+            if (joueur.getNomUtilisateur().equals(nomUser)) {
+                sc.close();
                 return joueur;
+            }
         }
         return null;
     }
