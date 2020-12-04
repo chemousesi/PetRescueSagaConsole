@@ -1,5 +1,6 @@
 package Environnement;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,7 +15,7 @@ public class Jeu {
     private static Niveau niveau[] = new Niveau[1];
     private static int nbNiveaux = 1;
     private static ArrayList<Joueur> joueurs;
-    private static int nbJoueurs = 0;
+    private static int nbJoueurs = 1;
     private static Parametres parameteresDuJeu;
     /// utilisé dans toutes les lectures.
     private static Scanner sc = new Scanner(System.in);
@@ -22,6 +23,7 @@ public class Jeu {
     public static void lancerJeu() {/// elle fait la configuration nécessaire pour lancer le jeu.
         telechargerNiveaux();
         telechargerJoueurs();
+        System.out.println(joueurs.size());
         telechargerParametresDuJeu();
     }
 
@@ -32,35 +34,43 @@ public class Jeu {
     public static void joueurEnModeConsole() throws UserNotFound, CloneNotSupportedException {
         welcome();
         String[] premiersChoix = { "1- Connexion", "2- Inscription", "3- Quitter" };
-        int choix_1 = menuTextuelle(premiersChoix);
-        Joueur joueur = null;
-        switch (choix_1) {
-            case 1:/// connexion
-                joueur = connexion();
-                break;
-
-            case 2:/// inscription
-                joueur = creerJoueur();
-                break;
-            case 3:/// quitter
-                System.exit(0);
-                break;
-        }
-        if (joueur == null)
-            throw new UserNotFound();
-        String[] deuxiemeChoix = { "1- Jouer", "2- Historique", "3- Help", "4- Deconnexion" };
-        int choix_2 = menuTextuelle(deuxiemeChoix);
-        switch (choix_2) {
-            case 1:/// jouer.
-                Partie partie = lancerPartie(joueur);
-                partie.jouerUnePartieModeTexte();
-                break;
-            case 2:/// historique.
-                break;
-            case 3:/// affichage d'un manuel.
-                break;
-            case 4: /// deconnexion.
-                break;
+        boolean exit = false;
+        while (!exit) {
+            int choix_1 = menuTextuelle(premiersChoix);
+            Joueur joueur = null;
+            switch (choix_1) {
+                case 1:/// connexion
+                    joueur = connexion();
+                    break;
+                case 2:/// inscription
+                    joueur = creerJoueur();
+                    break;
+                case 3:/// quitter
+                    sauvegarderJoueurs();/// sauvegarder les joueurs.
+                    System.exit(0);
+                    break;
+            }
+            if (joueur == null)
+                throw new UserNotFound();
+            String[] deuxiemeChoix = { "1- Jouer", "2- Historique", "3- Help", "4- Deconnexion" };
+            boolean deconnecter = false;
+            while (!deconnecter) {
+                int choix_2 = menuTextuelle(deuxiemeChoix);
+                switch (choix_2) {
+                    case 1:/// jouer.
+                        Partie partie = lancerPartie(joueur);
+                        partie.jouerUnePartieModeTexte();
+                        break;
+                    case 2:/// historique.
+                        break;
+                    case 3:/// affichage d'un manuel.
+                        break;
+                    case 4: /// deconnexion.
+                        System.out.println("Deconnxion du compte.");
+                        deconnecter = true;
+                        break;
+                }
+            }
         }
     }
 
@@ -98,11 +108,10 @@ public class Jeu {
     private static void telechargerJoueurs() {
         joueurs = new ArrayList<>();
         ObjectInputStream reader;
-        final String joueur = "Joueur";
-        for (int i = 1; i <= nbJoueurs; i++) {
+        File dirJoueurs = new File("src/Joueurs");
+        for (String path : dirJoueurs.list()) {
             try {
-                String path = "src/Joueurs/" + joueur + String.valueOf(i) + ".txt";
-                reader = new ObjectInputStream(new FileInputStream(path));
+                reader = new ObjectInputStream(new FileInputStream("src/Joueurs/" + path));
                 joueurs.add((Joueur) reader.readObject());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -112,10 +121,11 @@ public class Jeu {
                 e.printStackTrace();
             }
         }
+
     }
 
     public static void sauvegarderJoueurs() {
-        final String joueur = "Niveau";
+        final String joueur = "Joueur";
         ObjectOutputStream writer = null;
 
         try {
@@ -176,7 +186,6 @@ public class Jeu {
         String nomUser = sc.next();
         for (Joueur joueur : joueurs) {
             if (joueur.getNomUtilisateur().equals(nomUser)) {
-                sc.close();
                 return joueur;
             }
         }
