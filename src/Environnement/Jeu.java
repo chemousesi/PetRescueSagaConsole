@@ -41,9 +41,15 @@ public class Jeu {
             switch (choix_1) {
                 case 1:/// connexion
                     joueur = connexion();
+                    System.out.println("----------> Connexion <----------");
+                    System.out.println(joueur);
+                    System.out.println("---------------------------------");
                     break;
                 case 2:/// inscription
+                    System.out.println("----------> inscription <----------");
                     joueur = creerJoueur();
+                    System.out.println(joueur);
+                    System.out.println("-----------------------------------");
                     break;
                 case 3:/// quitter
                     sauvegarderJoueurs();/// sauvegarder les joueurs.
@@ -167,8 +173,8 @@ public class Jeu {
     private static Joueur creerJoueur() {
         System.out.println("Créer un nouveau joueur");
         System.out.print("Saisir votre nom : ");
-        sc.next();
-        String nom = sc.nextLine();
+        String nom = sc.next();
+        sc.nextLine();
         Joueur joueur = null;
         do {
             System.out.print("Saisir votre nom d'utilisateur : ");

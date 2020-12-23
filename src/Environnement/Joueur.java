@@ -48,4 +48,9 @@ public class Joueur implements Serializable {
         return this.nomUtilisateur.equals(((Joueur) obj).nomUtilisateur);
     }
 
+    @Override
+    public String toString() {
+        return "Nom : " + this.nom + "\nNiveau Actuel : " + this.niveauActuel + "\nScore : " + this.score;
+    }
+
 }
