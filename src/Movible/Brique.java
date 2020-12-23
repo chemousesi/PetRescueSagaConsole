@@ -1,6 +1,10 @@
 package Movible;
 
 public class Brique extends Element {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Couleur couleur;
 
     public Brique(int score, Couleur couleur) {

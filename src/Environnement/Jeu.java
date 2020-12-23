@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class Jeu {
     /// ajouter des retouches ici une fois les niveaux sont implementés.
-    private static Niveau niveau[] = new Niveau[1];
-    private static int nbNiveaux = 1;
+    private static Niveau niveau[] = new Niveau[2];
+    private static int nbNiveaux = 2;
     private static ArrayList<Joueur> joueurs;
     private static int nbJoueurs = 1;
     private static Parametres parameteresDuJeu;
@@ -23,7 +23,6 @@ public class Jeu {
     public static void lancerJeu() {/// elle fait la configuration nécessaire pour lancer le jeu.
         telechargerNiveaux();
         telechargerJoueurs();
-        System.out.println(joueurs.size());
         telechargerParametresDuJeu();
     }
 
@@ -65,6 +64,7 @@ public class Jeu {
                 switch (choix_2) {
                     case 1:/// jouer.
                         Partie partie = lancerPartie(joueur);
+                        System.out.println(niveau[1]);
                         partie.jouerUnePartieModeTexte();
                         break;
                     case 2:/// historique.
@@ -83,11 +83,12 @@ public class Jeu {
     private static void telechargerNiveaux() {
         final String niv = "Niveau";
         ObjectInputStream reader;
-        for (int i = 1; i <= nbNiveaux; i++) {
+        for (int i = 1; i <= 2; i++) {
             try {
                 String path = "src/Niveaux/" + niv + String.valueOf(i) + ".txt";
                 reader = new ObjectInputStream(new FileInputStream(path));
                 niveau[i - 1] = (Niveau) reader.readObject();
+                System.out.println(niveau[i - 1]);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

@@ -4,6 +4,10 @@ import java.io.Serializable;
 import Movible.*;
 
 public class Plateau implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     int lignes;
     int colonnes;
     private Case cases[][];
@@ -57,6 +61,54 @@ public class Plateau implements Serializable {
                 { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false), } };
 
+        return cases;
+    }
+
+    public static Case[][] plateauNiveau2() {
+        Case[][] cases = {
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Animal(20, "Chien", ""), true),
+                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(null, false), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Animal(20, "Chien", ""), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Animal(20, "Chien", ""), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(null, false), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false) } };
         return cases;
     }
 

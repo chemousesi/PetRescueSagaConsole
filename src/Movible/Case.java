@@ -3,6 +3,10 @@ package Movible;
 import java.io.Serializable;
 
 public class Case implements Serializable, Cloneable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Element element;
     private boolean active;
 

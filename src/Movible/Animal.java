@@ -1,6 +1,10 @@
 package Movible;
 
 public class Animal extends Element {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String nom;
     private String icon;
 

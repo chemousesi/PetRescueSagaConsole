@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Niveau implements Serializable {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private int numero;
     private Plateau plateau;
     private Conditions conditionsDeGagner;
