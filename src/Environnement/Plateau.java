@@ -203,6 +203,7 @@ public class Plateau implements Serializable {
         boolean terminer = false;
         boolean obstacleColonne;/// pour detecter un obstacle.
         boolean arreter;
+        boolean enter = false;
         int i = 1; /// pour les colonnes
         int j = cases.length - 2; /// pour les lignes
         int switcher, nbCasesActivesVidesColonnes, videColPrec, obstacleLigne;
@@ -228,7 +229,7 @@ public class Plateau implements Serializable {
                             /// voir si les cases de la gauches sont vides
                             switcher = j - 1;
                             if (i - 1 >= 1) {
-                                if (cases[j][i - 1].estVide() && cases[j + 1][i - 1].estVide()) {
+                                if (cases[j][i - 1].estVide()) {
                                     obstacleColonne = true;
                                     obstacleLigne = j;
                                     videColPrec = j + 1;
@@ -241,10 +242,11 @@ public class Plateau implements Serializable {
                                     j--;
                                     while (j > 0) {
                                         if (!cases[j][i].estVide() && cases[j][i].getElement().estMobile()) {
-                                            if (videColPrec != obstacleLigne) {
+                                            if (videColPrec >= obstacleLigne) {
                                                 cases[videColPrec][i - 1] = (Case) cases[j][i].clone();
                                                 cases[j][i].vider();
                                                 videColPrec--;
+                                                enter = true;
                                             } else {
                                                 cases[switcher][i] = (Case) cases[j][i].clone();
                                                 cases[j][i].vider();
@@ -252,6 +254,11 @@ public class Plateau implements Serializable {
                                             }
                                         }
                                         j--;
+                                    }
+                                    if (enter) {
+                                        i = i - 1;
+                                        j = cases.length - 1;
+                                        enter = false;
                                     }
                                 }
                             }
@@ -306,6 +313,7 @@ public class Plateau implements Serializable {
                                     cases[videColPrec][i - 1] = (Case) cases[j][i].clone();
                                     cases[j][i].vider();
                                     videColPrec--;
+                                    enter = true;
                                 } else {
                                     cases[switcher][i] = (Case) cases[j][i].clone();
                                     cases[j][i].vider();
@@ -314,10 +322,16 @@ public class Plateau implements Serializable {
                             }
                             j--;
                         }
-                        i++;
-                        j = cases.length - 2;
-                        if (i > cases[0].length - 2)
-                            terminer = true;
+                        if (enter) {
+                            i = i - 1;
+                            j = cases.length - 1;
+                            enter = false;
+                        } else {
+                            i++;
+                            j = cases.length - 2;
+                            if (i > cases[0].length - 2)
+                                terminer = true;
+                        }
 
                     } else {
                         j--;
