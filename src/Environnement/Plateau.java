@@ -213,8 +213,10 @@ public class Plateau implements Serializable {
                                                                             /// case vide.
                             cases[j][i].vider();/// vider la case d'où on a prit l'élément.
                             switcher--;/// décrementer le switcher pour indexer la prochaine case vide.
-                        } else /// ajouter un traitement aprés.
+                        } else { /// ajouter un traitement aprés.
                             obstacleColonne = true;
+
+                        }
                     } else if (cases[j][i].isActive())/// faire le calcul de nombre de cases vides dans la colonne.
                         nbCasesActivesVidesColonnes++;
                     j--;
