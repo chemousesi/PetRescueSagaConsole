@@ -365,14 +365,23 @@ public class Plateau implements Serializable {
 
     public int animalSauve() throws CloneNotSupportedException {
         int nbAnimaux = 0;
-        for (int i = 1; i < cases[0].length - 1; i++) {
-            if (!cases[cases.length - 2][i].estVide() && cases[cases.length - 2][i].estUnAnimal()) {
-                nbAnimaux++;
-                cases[cases.length - 2][i].vider();
+        boolean fin = false;
+        boolean enter;
+        do {
+            enter = false;
+            for (int i = 1; i < cases[0].length - 1; i++) {
+                if (!cases[cases.length - 2][i].estVide() && cases[cases.length - 2][i].estUnAnimal()) {
+                    nbAnimaux++;
+                    cases[cases.length - 2][i].vider();
+                    enter = true;
+                }
             }
-        }
-        if (nbAnimaux != 0)
-            this.reorganiserPlateau();
+            if (enter)
+                this.reorganiserPlateau();
+            else
+                fin = true;
+        } while (!fin);
+
         return nbAnimaux;
 
     }
