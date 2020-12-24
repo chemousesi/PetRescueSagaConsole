@@ -69,17 +69,21 @@ public class Plateau implements Serializable {
                 { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false) },
-                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Obstacle(0, Couleur.gris), true),
                         new Case(new Brique(10, Couleur.bleu), true), new Case(new Animal(20, "Chien", ""), true),
-                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) },
-                { new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Brique(10, Couleur.bleu), true),
                         new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.bleu), true),
-                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.rouge), true),
-                        new Case(null, false), new Case(null, false), new Case(null, false) },
-                { new Case(null, false), new Case(null, false), new Case(new Brique(10, Couleur.bleu), true),
-                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.orange), true),
-                        new Case(new Animal(20, "Chien", ""), true), new Case(new Brique(10, Couleur.rouge), true),
-                        new Case(new Brique(10, Couleur.orange), true), new Case(null, false), new Case(null, false) },
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Animal(20, "Chien", ""), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
                 { new Case(null, false), new Case(new Brique(10, Couleur.bleu), true),
                         new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.orange), true),
                         new Case(new Brique(10, Couleur.violet), true), new Case(new Obstacle(0, Couleur.gris), true),
@@ -95,17 +99,21 @@ public class Plateau implements Serializable {
                         new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.violet), true),
                         new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.violet), true),
                         new Case(new Brique(10, Couleur.violet), true), new Case(null, false) },
-                { new Case(null, false), new Case(null, false), new Case(new Brique(10, Couleur.jaune), true),
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.orange), true),
                         new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.orange), true),
-                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.rouge), true),
-                        new Case(new Brique(10, Couleur.rouge), true), new Case(null, false), new Case(null, false) },
-                { new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Obstacle(0, Couleur.gris), true),
                         new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.jaune), true),
-                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.rouge), true),
-                        new Case(null, false), new Case(null, false), new Case(null, false) },
-                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
-                        new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.jaune), true),
-                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) },
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
                 { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
                         new Case(null, false), new Case(null, false) } };
@@ -197,10 +205,11 @@ public class Plateau implements Serializable {
         boolean arreter;
         int i = 1; /// pour les colonnes
         int j = cases.length - 2; /// pour les lignes
-        int switcher, nbCasesActivesVidesColonnes;
+        int switcher, nbCasesActivesVidesColonnes, videColPrec, obstacleLigne;
         while (!terminer) { /// tant que le processus de reorganisation n'est pas terminé.
-            if (cases[j][i].estVide() && cases[j][i].isActive()) {/// verifier si une case est vide donc elle était
-                                                                  /// pleine et ensuite elle est détruite.
+            if (cases[j][i].estVide() && cases[j][i].isActive()) {/// verifier si une case est
+                                                                  /// vide donc elle était
+                /// pleine et ensuite elle est détruite.
                 switcher = j; /// pour l'utiliser dans la permutation des cases.
                 j--;
                 obstacleColonne = false;/// pour detecter un obstacle dans une colonne.
@@ -208,14 +217,44 @@ public class Plateau implements Serializable {
                 while (!obstacleColonne && j > 0) {/// tant que on a pas trouver un obstacle dans la colonne ou on a
                                                    /// finit la lecture de la colonne.
                     if (!cases[j][i].estVide()) {/// verifier si on trouve une case non vide dans la colonne.
-                        if (cases[j][i].getElement().estMobile()) {/// verifier si c'est un élément movible.
+                        if (cases[j][i].getElement().estMobile() && cases[switcher][i].estVide()) {/// verifier si c'est
+                                                                                                   /// un élément
+                                                                                                   /// movible.
                             cases[switcher][i] = (Case) cases[j][i].clone();/// cloner l'élément et le mettre dans la
                                                                             /// case vide.
                             cases[j][i].vider();/// vider la case d'où on a prit l'élément.
                             switcher--;/// décrementer le switcher pour indexer la prochaine case vide.
                         } else { /// ajouter un traitement aprés.
-                            obstacleColonne = true;
-
+                            /// voir si les cases de la gauches sont vides
+                            switcher = j - 1;
+                            if (i - 1 >= 1) {
+                                if (cases[j][i - 1].estVide() && cases[j + 1][i - 1].estVide()) {
+                                    obstacleColonne = true;
+                                    obstacleLigne = j;
+                                    videColPrec = j + 1;
+                                    switcher = j - 1;
+                                    while (videColPrec <= cases.length - 2 && cases[videColPrec][i - 1].estVide()) {
+                                        videColPrec++;
+                                    }
+                                    if (videColPrec <= cases.length - 2)
+                                        videColPrec--;
+                                    j--;
+                                    while (j > 0) {
+                                        if (!cases[j][i].estVide() && cases[j][i].getElement().estMobile()) {
+                                            if (videColPrec != obstacleLigne) {
+                                                cases[videColPrec][i - 1] = (Case) cases[j][i].clone();
+                                                cases[j][i].vider();
+                                                videColPrec--;
+                                            } else {
+                                                cases[switcher][i] = (Case) cases[j][i].clone();
+                                                cases[j][i].vider();
+                                                switcher--;
+                                            }
+                                        }
+                                        j--;
+                                    }
+                                }
+                            }
                         }
                     } else if (cases[j][i].isActive())/// faire le calcul de nombre de cases vides dans la colonne.
                         nbCasesActivesVidesColonnes++;
@@ -247,6 +286,55 @@ public class Plateau implements Serializable {
                                 j--;
                         }
                         j = cases.length - 2;
+                    }
+                }
+            } else if (!cases[j][i].estVide() && !cases[j][i].getElement().estMobile()) {
+                if (i - 1 >= 1) {
+                    if (cases[j][i - 1].estVide()) {
+                        obstacleLigne = j;
+                        videColPrec = j + 1;
+                        switcher = j - 1;
+                        while (videColPrec <= cases.length - 2 && cases[videColPrec][i - 1].estVide()) {
+                            videColPrec++;
+                        }
+                        if (videColPrec <= cases.length - 2)
+                            videColPrec--;
+                        j--;
+                        while (j > 0) {
+                            if (!cases[j][i].estVide() && cases[j][i].getElement().estMobile()) {
+                                if (videColPrec >= obstacleLigne) {
+                                    cases[videColPrec][i - 1] = (Case) cases[j][i].clone();
+                                    cases[j][i].vider();
+                                    videColPrec--;
+                                } else {
+                                    cases[switcher][i] = (Case) cases[j][i].clone();
+                                    cases[j][i].vider();
+                                    switcher--;
+                                }
+                            }
+                            j--;
+                        }
+                        i++;
+                        j = cases.length - 2;
+                        if (i > cases[0].length - 2)
+                            terminer = true;
+
+                    } else {
+                        j--;
+                        if (j == 0) {
+                            i++;
+                            j = cases.length - 2;
+                            if (i > cases[0].length - 2)
+                                terminer = true;
+                        }
+                    }
+                } else {
+                    j--;
+                    if (j == 0) {
+                        j = cases.length - 2;
+                        i++;
+                        if (i > cases[0].length - 2)
+                            terminer = true;
                     }
                 }
             } else {
