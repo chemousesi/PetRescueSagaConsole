@@ -42,10 +42,10 @@ public class Partie {
         /// ajouter des retouches ici.
         while (!estGagne() && !abondonner() && !estPerdue()) { /// tant que la parite n'es pas gagné
             this.niveauAJouer.getPlateau().afficher();
-            System.out.println("Tapez les coordonnées d'une case : ");
-            System.out.print("Tapez la coordonnée X : ");
+            System.out.println("--> Indiquer la case à detruire : ");
+            System.out.print("Tapez le n° de la colonne : ");
             coordX = scanner.nextInt();
-            System.out.print("Tapez la coordonnée Y : ");
+            System.out.print("Tapez le n° de la ligne : ");
             coordY = scanner.nextInt();
             this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
             this.niveauAJouer.getPlateau().reorganiserPlateau();

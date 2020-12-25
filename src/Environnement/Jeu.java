@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Jeu {
@@ -35,7 +36,7 @@ public class Jeu {
         String[] premiersChoix = { "1- Connexion", "2- Inscription", "3- Quitter" };
         boolean exit = false;
         while (!exit) {
-            int choix_1 = menuTextuelle(premiersChoix);
+            int choix_1 = menuTextuelle(premiersChoix, "Menu Principale");
             Joueur joueur = null;
             switch (choix_1) {
                 case 1:/// connexion
@@ -45,8 +46,8 @@ public class Jeu {
                     System.out.println("---------------------------------");
                     break;
                 case 2:/// inscription
-                    System.out.println("----------> inscription <----------");
                     joueur = creerJoueur();
+                    System.out.println("----------> inscription <----------");
                     System.out.println(joueur);
                     System.out.println("-----------------------------------");
                     break;
@@ -60,11 +61,10 @@ public class Jeu {
             String[] deuxiemeChoix = { "1- Jouer", "2- Historique", "3- Help", "4- Deconnexion" };
             boolean deconnecter = false;
             while (!deconnecter) {
-                int choix_2 = menuTextuelle(deuxiemeChoix);
+                int choix_2 = menuTextuelle(deuxiemeChoix, "Mon Compte");
                 switch (choix_2) {
                     case 1:/// jouer.
                         Partie partie = lancerPartie(joueur);
-                        System.out.println(niveau[1]);
                         partie.jouerUnePartieModeTexte();
                         break;
                     case 2:/// historique.
@@ -88,7 +88,6 @@ public class Jeu {
                 String path = "src/Niveaux/" + niv + String.valueOf(i) + ".txt";
                 reader = new ObjectInputStream(new FileInputStream(path));
                 niveau[i - 1] = (Niveau) reader.readObject();
-                System.out.println(niveau[i - 1]);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -120,6 +119,7 @@ public class Jeu {
             try {
                 reader = new ObjectInputStream(new FileInputStream("src/Joueurs/" + path));
                 joueurs.add((Joueur) reader.readObject());
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -128,7 +128,7 @@ public class Jeu {
                 e.printStackTrace();
             }
         }
-
+        nbJoueurs = joueurs.size();
     }
 
     public static void sauvegarderJoueurs() {
@@ -154,41 +154,57 @@ public class Jeu {
     }
 
     private static void welcome() {
-        System.out.println("Bienvenus dans Pet Rescue saga");
+        System.out.println(
+                "========================================> Bienvenus dans Pet Rescue saga <========================================");
         // affichage du plateau
     }
 
-    private static int menuTextuelle(String[] tabDeChoix) { /// amelioration du menu.
+    private static int menuTextuelle(String[] tabDeChoix, String nomMenu) { /// amelioration du menu.
         // premier menu du jeu
+        System.out.println("____________________________________________| " + nomMenu
+                + " |____________________________________________\n");
         for (String choix : tabDeChoix) {
-            System.out.println(choix);
+            System.out.println("\t\t\t\t\t\t" + choix + "\n");
         }
         int choix = 0;
         do {
             System.out.print("Tapez votre choix : ");
-            choix = sc.nextInt();
+            try {
+                choix = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.err.println("*** Caractère non numérique détecté ***");
+                sc.next();
+                choix = 0;
+            }
         } while (choix < 1 || choix > tabDeChoix.length);
+        System.out.println(
+                "___________________________________________________________________________________________________________");
         return choix;
     }
 
     private static Joueur creerJoueur() {
-        System.out.println("Créer un nouveau joueur");
+        System.out.println("--> Création d'un nouveau joueur");
         System.out.print("Saisir votre nom : ");
         String nom = sc.next();
         sc.nextLine();
         Joueur joueur = null;
+        boolean notAdded = false;
         do {
             System.out.print("Saisir votre nom d'utilisateur : ");
             String nomUser = sc.nextLine();
             joueur = new Joueur(nom, nomUser);
-        } while (joueurs.contains(joueur));
+            if (joueurs.contains(joueur)) {
+                System.out.println("*** Joueur existant changer le nom d'utilisateur ***");
+            } else
+                notAdded = true;
+        } while (!notAdded);
         joueurs.add(joueur);
         nbJoueurs++;
         return joueur;
     }
 
     private static Joueur connexion() {
-        System.out.println("Se connecter");
+        System.out.println("--> Identification");
         System.out.print("votre pseudo : ");
         String nomUser = sc.next();
         for (Joueur joueur : joueurs) {
