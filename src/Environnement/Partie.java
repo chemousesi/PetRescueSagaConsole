@@ -52,16 +52,23 @@ public class Partie {
             String reponse = scanner.next();
             // traiter le cas de m
             if (reponse.equalsIgnoreCase("m")) {
-                System.out.println("Indiquer la colonne à détruire ");
-                try {
-                    int colADetruire = scanner.nextInt();
-                    this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau()
-                            .detruireColonneParMissile(colADetruire);
 
-                } catch (InputMismatchException e) {
-                    scanner.next();
-                    System.out.println("Entreée non valide");
+                if (this.niveauAJouer.getAides().missileDisponible()) {
+                    System.out.println("Indiquer la colonne à détruire ");
+                    try {
+                        int colADetruire = scanner.nextInt();
+                        this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau()
+                                .detruireColonneParMissile(colADetruire);
+                        this.niveauAJouer.getAides().enleverMissile();
+
+                    } catch (InputMismatchException e) {
+                        scanner.next();
+                        System.out.println("Entreée non valide");
+                    }
+                } else {
+                    System.out.println("plus de missile disponible !");
                 }
+
             } else if (reponse.equalsIgnoreCase("d")) {
                 System.out.println("--> Indiquer la case à detruire: ");
                 // il faut rajouter l'utilisation de missile ici

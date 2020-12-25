@@ -11,14 +11,13 @@ public class Niveau implements Serializable {
     private int numero;
     private Plateau plateau;
     private Conditions conditionsDeGagner;
-    private ArrayList<Aide> listDesAides;
-    private int nbMissiles;
+    private Aide aides;
 
-    public Niveau(int numero, Plateau plateau, Conditions conditions, ArrayList<Aide> listeDesAides) {
+    public Niveau(int numero, Plateau plateau, Conditions conditions, Aide aides) {
         this.numero = numero;
         this.plateau = plateau;
         this.conditionsDeGagner = conditions;
-        this.listDesAides = listeDesAides;
+        this.aides = aides;
     }
 
     public void printConditionsGagner() {
@@ -36,8 +35,8 @@ public class Niveau implements Serializable {
         return conditionsDeGagner;
     }
 
-    public ArrayList<Aide> getListDesAides() {
-        return listDesAides;
+    public Aide getAides() {
+        return aides;
     }
 
     public int getNumero() {
