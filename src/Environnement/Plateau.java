@@ -31,11 +31,16 @@ public class Plateau implements Serializable {
     }
 
     public void afficher() {
-        System.out.println("\n\t\t\t\t        Plateau ");
-        for (int l = 1; l < this.cases.length - 1; l++) {
-            System.out.print("\t\t\t\t");
-            for (int c = 1; c < this.cases[0].length - 1; c++) {
-                System.out.print(cases[l][c] + "  ");
+        System.out.print("  ");
+        for (int i = 1; i < this.cases[0].length - 1; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();// r etour à la ligne
+        for (int l = 1; l < this.cases.length - 1; l++) {// affichage des lignes
+            System.out.print(l + " ");
+            for (int c = 1; c < this.cases[0].length - 1; c++) { // affichafe des colonnes
+
+                System.out.print(cases[l][c] + " ");
             }
             System.out.println();
         }
