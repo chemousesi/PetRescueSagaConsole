@@ -409,7 +409,7 @@ public class Plateau implements Serializable {
 
         // vider toutes les briques dans la colonne selectionnée
         for (int i = 1; i < cases.length - 1; i++) {
-            if (!cases[i][c].estVide() && cases[i][c].estUneBrique()) {
+            if (!cases[i][c].estVide() && cases[i][c].estUneBrique() && cases[i][c].getElement().estMobile()) {
                 cases[i][c].vider();
                 score += 10;
             }

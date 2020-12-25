@@ -47,22 +47,47 @@ public class Partie {
 
             System.out.println("                     Nombre de points gagnés : " + this.nbPointsGangerParLeJoueur
                     + "  Nombre d'animaux sauvés : " + this.nbAnimauxSauves + "\n");
-            System.out.println("--> Indiquer la case à detruire: ");
-            // il faut rajouter l'utilisation de missile ici
-            try {
 
-                System.out.print("Tapez le n° de la colonne : ");
-                coordX = scanner.nextInt();
-                System.out.print("Tapez le n° de la ligne   : ");
-                coordY = scanner.nextInt();
-                this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
-                this.niveauAJouer.getPlateau().reorganiserPlateau();
-                this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
-            } catch (InputMismatchException e) {
-                scanner.next();// on pourra traiter le problème du missile ici
-                System.out.println("Entrée non valide");
+            System.out.println("d : détruire , m : missile");
+            String reponse = scanner.next();
+            // traiter le cas de m
+            if (reponse.equalsIgnoreCase("m")) {
 
+                if (this.niveauAJouer.getAides().missileDisponible()) {
+                    System.out.println("Indiquer la colonne à détruire ");
+                    try {
+                        int colADetruire = scanner.nextInt();
+                        this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau()
+                                .detruireColonneParMissile(colADetruire);
+                        this.niveauAJouer.getAides().enleverMissile();
+
+                    } catch (InputMismatchException e) {
+                        scanner.next();
+                        System.out.println("Entreée non valide");
+                    }
+                } else {
+                    System.out.println("plus de missile disponible !");
+                }
+
+            } else if (reponse.equalsIgnoreCase("d")) {
+                System.out.println("--> Indiquer la case à detruire: ");
+                // il faut rajouter l'utilisation de missile ici
+                try {
+
+                    System.out.print("Tapez le n° de la colonne : ");
+                    coordX = scanner.nextInt();
+                    System.out.print("Tapez le n° de la ligne   : ");
+                    coordY = scanner.nextInt();
+                    this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
+
+                } catch (InputMismatchException e) {
+                    scanner.next();// on pourra traiter le problème du missile ici
+                    System.out.println("Entrée non valide");
+
+                }
             }
+            this.niveauAJouer.getPlateau().reorganiserPlateau();
+            this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
 
         }
         if (estGagne()) {
