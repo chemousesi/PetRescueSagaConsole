@@ -395,4 +395,25 @@ public class Plateau implements Serializable {
         return nbAnimaux;
 
     }
+
+    public int detruireColonneParMissile(int c) {
+        // retourne le score fait par les distructions par missile
+        int score = 0;
+
+        // traiter le cas de la colonne hors jeu
+        if (c < 1 || c > cases[0].length - 1) {
+            System.out.println("colonne hors jeu");
+            return 0;
+        }
+
+        // vider toutes les briques dans la colonne selectionnée
+        for (int i = 1; i < cases.length - 1; i++) {
+            if (!cases[i][c].estVide() && cases[i][c].estUneBrique() && cases[i][c].getElement().estMobile()) {
+                cases[i][c].vider();
+                score += 10;
+            }
+        }
+        // Attention cette fonction n'appelle pas la réorganisation automatiqument
+        return score;
+    }
 }

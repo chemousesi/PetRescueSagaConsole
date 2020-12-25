@@ -11,9 +11,6 @@ public class App {
                 // Jeu.sauvegarderNiveau(new Niveau(1, new Plateau(Plateau.plateauNiveau1()),
                 /// new Conditions(2, 60),
                 // new ArrayList<Aide>()));
-                // ArrayList<Aide> arrayList = new ArrayList<>();
-                // arrayList.add(new Indice());
-                // arrayList.add(new Missile());
                 // Jeu.sauvegarderNiveau(new Niveau(2, new Plateau(Plateau.plateauNiveau2()),
                 /// new Conditions(3, 260),
                 // arrayList));
