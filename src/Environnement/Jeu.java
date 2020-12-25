@@ -161,6 +161,7 @@ public class Jeu {
 
     private static int menuTextuelle(String[] tabDeChoix, String nomMenu) { /// amelioration du menu.
         // premier menu du jeu
+        Scanner sc2 = new Scanner(System.in);
         System.out.println("____________________________________________| " + nomMenu
                 + " |____________________________________________\n");
         for (String choix : tabDeChoix) {
@@ -169,11 +170,12 @@ public class Jeu {
         int choix = 0;
         do {
             System.out.print("Tapez votre choix : ");
+
             try {
-                choix = sc.nextInt();
+                choix = sc2.nextInt();
             } catch (InputMismatchException e) {
+                sc2.next();
                 System.err.println("*** Caractère non numérique détecté ***");
-                sc.next();
                 choix = 0;
             }
         } while (choix < 1 || choix > tabDeChoix.length);
