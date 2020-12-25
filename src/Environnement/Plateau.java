@@ -56,7 +56,7 @@ public class Plateau implements Serializable {
                         new Case(null, false), new Case(null, false), },
                 { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
                         new Case(new Animal(20, "Chat", ""), true), new Case(new Brique(10, Couleur.rouge), true),
-                        new Case(null, false), new Case(null, false), },
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false), },
                 { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
                         new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.rouge), true),
                         new Case(new Animal(20, "Chien", ""), true), new Case(null, false), },
@@ -184,7 +184,7 @@ public class Plateau implements Serializable {
     public int detruire(int l, int c) {
         int score = 0;
         if (!cases[l][c].estVide()) {
-            if (cases[l][c].estUneBrique()) {
+            if (cases[l][c].estUneBrique() && cases[l][c].getElement().estMobile()) {
                 if (!cases[l - 1][c].estVide() && cases[l - 1][c].estUneBrique()
                         && cases[l - 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
                     score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
@@ -200,10 +200,10 @@ public class Plateau implements Serializable {
                 }
 
             } else {
-                System.out.println("Ce n'est pas une brique !!!");
+                System.out.println("*** Ce n'est pas une brique colorée ***");
             }
         } else {
-            System.out.println("La case est vide !!!");
+            System.out.println("*** La case est vide ***");
         }
         return score;
     }
