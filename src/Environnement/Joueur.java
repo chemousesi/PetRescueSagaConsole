@@ -19,6 +19,10 @@ public class Joueur implements Serializable {
         this.nomUtilisateur = nomUser;
     }
 
+    public void incrementeScore(int score) {
+        this.score += score;
+    }
+
     public void setniveauActuel(int niveauActuel) {
         this.niveauActuel = niveauActuel;
     }

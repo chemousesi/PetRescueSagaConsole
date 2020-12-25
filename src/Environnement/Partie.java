@@ -19,7 +19,7 @@ public class Partie {
 
     private boolean estGagne() {
         return niveauAJouer.getConditionsDeGagner().getNbAnimauxASauver() == this.nbAnimauxSauves
-                && niveauAJouer.getConditionsDeGagner().getNbPointsAGagner() >= this.nbPointsGangerParLeJoueur;
+                && niveauAJouer.getConditionsDeGagner().getNbPointsAGagner() <= this.nbPointsGangerParLeJoueur;
     }
 
     private boolean estPerdue() {
@@ -41,12 +41,18 @@ public class Partie {
 
         /// ajouter des retouches ici.
         while (!estGagne() && !abondonner() && !estPerdue()) { /// tant que la parite n'es pas gagné
+            this.niveauAJouer.printConditionsGagner();
             this.niveauAJouer.getPlateau().afficher();
+<<<<<<< HEAD
             // il faut rajouter l'utilisation de missile ici
+=======
+            System.out.println("                     Nombre de points gagnés : " + this.nbPointsGangerParLeJoueur
+                    + "  Nombre d'animaux sauvés : " + this.nbAnimauxSauves + "\n");
+>>>>>>> bad505a1493ae74a83678551d467eab2147b7b83
             System.out.println("--> Indiquer la case à detruire : ");
             System.out.print("Tapez le n° de la colonne : ");
             coordX = scanner.nextInt();
-            System.out.print("Tapez le n° de la ligne : ");
+            System.out.print("Tapez le n° de la ligne   : ");
             coordY = scanner.nextInt();
             this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
             this.niveauAJouer.getPlateau().reorganiserPlateau();
@@ -54,6 +60,7 @@ public class Partie {
         }
         if (estGagne()) {
             this.joueur.incrementerNivActuel();
+            this.joueur.incrementeScore(nbPointsGangerParLeJoueur + 10 * nbAnimauxSauves);
             System.out.println("Le partie est gagné !!!");
         } else if (abondonner) {
             /// traitement ici
