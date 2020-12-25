@@ -41,6 +41,7 @@ public class Partie {
 
         /// ajouter des retouches ici.
         while (!estGagne() && !abondonner() && !estPerdue()) { /// tant que la parite n'es pas gagné
+            this.niveauAJouer.printConditionsGagner();
             this.niveauAJouer.getPlateau().afficher();
             System.out.println("--> Indiquer la case à detruire : ");
             System.out.print("Tapez le n° de la colonne : ");
