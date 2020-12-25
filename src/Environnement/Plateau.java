@@ -32,7 +32,7 @@ public class Plateau implements Serializable {
 
     public void afficher() {
         String espace = "                                 ";
-
+        System.out.println("\n                         " + "################## Plateau ###################\n");
         System.out.print(espace + "   ");
         for (int i = 1; i < this.cases[0].length - 1; i++) {
             System.out.print(i + "  ");
@@ -47,6 +47,7 @@ public class Plateau implements Serializable {
             }
             System.out.println();
         }
+        System.out.println("\n                         " + "##############################################\n");
     }
 
     public static Case[][] plateauNiveau1() {
