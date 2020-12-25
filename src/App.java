@@ -17,6 +17,7 @@ public class App {
                 // Jeu.sauvegarderNiveau(new Niveau(2, new Plateau(Plateau.plateauNiveau2()),
                 /// new Conditions(3, 260),
                 // arrayList));
+
                 Jeu.lancerJeu();
                 try {
                         Jeu.joueurEnModeConsole();
