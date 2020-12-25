@@ -31,13 +31,15 @@ public class Plateau implements Serializable {
     }
 
     public void afficher() {
-        System.out.print("  ");
+        String espace = "                                 ";
+
+        System.out.print(espace + "  ");
         for (int i = 1; i < this.cases[0].length - 1; i++) {
             System.out.print(i + " ");
         }
         System.out.println();// r etour à la ligne
         for (int l = 1; l < this.cases.length - 1; l++) {// affichage des lignes
-            System.out.print(l + " ");
+            System.out.print(espace + l + " ");
             for (int c = 1; c < this.cases[0].length - 1; c++) { // affichafe des colonnes
 
                 System.out.print(cases[l][c] + " ");
