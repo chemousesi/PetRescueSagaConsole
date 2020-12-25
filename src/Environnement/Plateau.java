@@ -315,8 +315,7 @@ public class Plateau implements Serializable {
                         while (videColPrec <= cases.length - 2 && cases[videColPrec][i - 1].estVide()) {
                             videColPrec++;
                         }
-                        if (videColPrec <= cases.length - 2)
-                            videColPrec--;
+                        videColPrec--;
                         j--;
                         while (j > 0) {
                             if (!cases[j][i].estVide() && cases[j][i].getElement().estMobile()) {
