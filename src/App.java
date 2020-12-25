@@ -15,12 +15,12 @@ public class App {
                 arrayList.add(new Missile());
                 Jeu.sauvegarderNiveau(new Niveau(2, new Plateau(Plateau.plateauNiveau2()), new Conditions(3, 130),
                                 arrayList));
-                // Jeu.lancerJeu();
-                // try {
-                // Jeu.joueurEnModeConsole();
-                // } catch (Exception e) {
-                // System.out.println(e);
-                // }
-                // Scanner sc = new Scanner(System.in);
+                Jeu.lancerJeu();
+                try {
+                        Jeu.joueurEnModeConsole();
+                } catch (Exception e) {
+                        System.out.println(e);
+                }
+                Scanner sc = new Scanner(System.in);
         }
 }
