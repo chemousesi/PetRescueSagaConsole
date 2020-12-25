@@ -394,4 +394,14 @@ public class Plateau implements Serializable {
         return nbAnimaux;
 
     }
+
+    public void detruireColonneParMissile(int c) {
+
+        for (int i = 1; i < cases.length - 1; i++) {
+            if (!cases[i][c].estVide() && cases[i][c].estUneBrique()) {
+                cases[i][c].vider();
+            }
+        }
+
+    }
 }

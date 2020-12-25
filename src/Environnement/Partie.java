@@ -42,6 +42,7 @@ public class Partie {
         /// ajouter des retouches ici.
         while (!estGagne() && !abondonner() && !estPerdue()) { /// tant que la parite n'es pas gagné
             this.niveauAJouer.getPlateau().afficher();
+            // il faut rajouter l'utilisation de missile ici
             System.out.println("--> Indiquer la case à detruire : ");
             System.out.print("Tapez le n° de la colonne : ");
             coordX = scanner.nextInt();
@@ -61,4 +62,5 @@ public class Partie {
         }
         scanner.close();
     }
+
 }
