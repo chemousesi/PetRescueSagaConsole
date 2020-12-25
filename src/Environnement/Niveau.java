@@ -20,6 +20,15 @@ public class Niveau implements Serializable {
         this.listDesAides = listeDesAides;
     }
 
+    public void printConditionsGagner() {
+        System.out.println("\t\t\t\t ########### Conditions Pour Gagner ###########");
+        System.out.println("\t\t\t\t #                                            #");
+        System.out.println("\t\t\t\t # Nombre de points : " + this.conditionsDeGagner.getNbPointsAGagner() + " #");
+        System.out.println("\t\t\t\t # Nombre d'animaux : " + this.conditionsDeGagner.getNbAnimauxASauver() + " #");
+        System.out.println("\t\t\t\t #                                            #");
+        System.out.println("\t\t\t\t ##############################################");
+    }
+
     public Conditions getConditionsDeGagner() {
         return conditionsDeGagner;
     }
