@@ -1,5 +1,6 @@
 package Environnement;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Partie {
@@ -36,23 +37,33 @@ public class Partie {
     }
 
     public void jouerUnePartieModeTexte() throws CloneNotSupportedException {
-        Scanner scanner = new Scanner(System.in);
         int coordX, coordY;
+        Scanner scanner = new Scanner(System.in);
 
         /// ajouter des retouches ici.
         while (!estGagne() && !abondonner() && !estPerdue()) { /// tant que la parite n'es pas gagné
             this.niveauAJouer.printConditionsGagner();
             this.niveauAJouer.getPlateau().afficher();
+
             System.out.println("                     Nombre de points gagnés : " + this.nbPointsGangerParLeJoueur
                     + "  Nombre d'animaux sauvés : " + this.nbAnimauxSauves + "\n");
-            System.out.println("--> Indiquer la case à detruire : ");
-            System.out.print("Tapez le n° de la colonne : ");
-            coordX = scanner.nextInt();
-            System.out.print("Tapez le n° de la ligne   : ");
-            coordY = scanner.nextInt();
-            this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
-            this.niveauAJouer.getPlateau().reorganiserPlateau();
-            this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
+            System.out.println("--> Indiquer la case à detruire: ");
+            // il faut rajouter l'utilisation de missile ici
+            try {
+
+                System.out.print("Tapez le n° de la colonne : ");
+                coordX = scanner.nextInt();
+                System.out.print("Tapez le n° de la ligne   : ");
+                coordY = scanner.nextInt();
+                this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
+                this.niveauAJouer.getPlateau().reorganiserPlateau();
+                this.nbAnimauxSauves += this.niveauAJouer.getPlateau().animalSauve();
+            } catch (InputMismatchException e) {
+                scanner.next();// on pourra traiter le problème du missile ici
+                System.out.println("Entrée non valide");
+
+            }
+
         }
         if (estGagne()) {
             this.joueur.incrementerNivActuel();
@@ -65,4 +76,5 @@ public class Partie {
         }
         scanner.close();
     }
+
 }
