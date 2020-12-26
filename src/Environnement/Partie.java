@@ -31,7 +31,6 @@ public class Partie {
         try {
             clone = (Plateau) this.niveauAJouer.getPlateau().clone();
         } catch (CloneNotSupportedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         for (int i = 1; i < clone.colonnes - 1; i++) {

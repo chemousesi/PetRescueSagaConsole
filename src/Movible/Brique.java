@@ -7,8 +7,7 @@ public class Brique extends Element {
     private static final long serialVersionUID = 1L;
     private Couleur couleur;
 
-    public Brique(int score, Couleur couleur) {
-        super(score);
+    public Brique(Couleur couleur) {
         this.couleur = couleur;
     }
 
