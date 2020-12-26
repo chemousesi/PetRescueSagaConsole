@@ -47,4 +47,11 @@ public class Aide implements Serializable { /// pour identifier les aides qu'un 
         return false;
     }
 
+    public boolean enleverIndice() {
+        if (indiceDisponible()) {
+            nbIndices--;
+            return true;
+        }
+        return false;
+    }
 }

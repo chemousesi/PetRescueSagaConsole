@@ -172,7 +172,6 @@ public class Jeu {
 
             try {
                 choix = sc.nextInt();
-
             } catch (InputMismatchException e) {
                 sc.next();
                 System.err.println("*** Caractère non numérique détecté ***");

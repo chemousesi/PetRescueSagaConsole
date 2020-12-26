@@ -1,9 +1,11 @@
 package Environnement;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import Movible.*;
 
-public class Plateau implements Serializable {
+public class Plateau implements Serializable, Cloneable {
     /**
      *
      */
@@ -140,11 +142,9 @@ public class Plateau implements Serializable {
             // System.out.println("mauvaise selection des indices ");
             return acc;
         } else if (!cases[l][c].isActive()) {
-            // System.out.println("Case hors de jeu");
             return acc;
 
         } else if (cases[l][c].estVide()) {
-            // System.out.println("case vide");
             return acc;
 
         } else if (!(cases[l][c].estUneBrique()))
@@ -181,7 +181,7 @@ public class Plateau implements Serializable {
 
     }
 
-    public int detruire(int l, int c) {
+    public int detruire(int l, int c, boolean afficher) {
         int score = 0;
         if (!cases[l][c].estVide()) {
             if (cases[l][c].estUneBrique() && cases[l][c].getElement().estMobile()) {
@@ -200,10 +200,12 @@ public class Plateau implements Serializable {
                 }
 
             } else {
-                System.out.println("*** Ce n'est pas une brique colorée ***");
+                if (afficher)
+                    System.out.println("*** Ce n'est pas une brique colorée ***");
             }
         } else {
-            System.out.println("*** La case est vide ***");
+            if (afficher)
+                System.out.println("*** La case est vide ***");
         }
         return score;
     }
@@ -415,5 +417,42 @@ public class Plateau implements Serializable {
         }
         // Attention cette fonction n'appelle pas la réorganisation automatiqument
         return score;
+    }
+
+    public ArrayList<Integer> avoirBonCase() {
+        int scoreMax = 0, scoreTemp;
+        int l = 1, c = 1;
+        try {
+            Plateau plateau = (Plateau) this.clone();
+            for (int i = 1; i < lignes - 1; i++) {
+                for (int j = 1; j < colonnes - 1; j++) {
+                    scoreTemp = plateau.detruire(i, j, false);
+                    if (scoreTemp > scoreMax) {
+                        scoreMax = scoreTemp;
+                        l = i;
+                        c = j;
+                    }
+                }
+            }
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(l);
+        arrayList.add(c);
+        arrayList.add(scoreMax);
+        return arrayList;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        Case[][] cases = new Case[lignes][colonnes];
+        for (int i = 0; i < lignes; i++) {
+            for (int j = 0; j < colonnes; j++) {
+                cases[i][j] = (Case) this.cases[i][j].clone();
+            }
+        }
+        return new Plateau(cases);
     }
 }

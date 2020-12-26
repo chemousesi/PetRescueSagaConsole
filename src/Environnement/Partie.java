@@ -1,5 +1,6 @@
 package Environnement;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -25,7 +26,25 @@ public class Partie {
 
     private boolean estPerdue() {
         /// faire le traitement pour savoir si la partie est perdue.
-        return false;
+        int nbPointsGagnes = 0;
+        Plateau clone = null;
+        try {
+            clone = (Plateau) this.niveauAJouer.getPlateau().clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        for (int i = 1; i < clone.colonnes - 1; i++) {
+            for (int j = 1; j < clone.lignes - 1; j++) {
+                nbPointsGagnes += clone.detruire(i, j, false);
+                if (nbPointsGagnes != 0)
+                    return false;
+            }
+        }
+        if (this.nbPointsGangerParLeJoueur >= this.niveauAJouer.getConditionsDeGagner().getNbPointsAGagner()
+                && this.nbAnimauxSauves == this.niveauAJouer.getConditionsDeGagner().getNbAnimauxASauver())
+            return false;
+        return true;
     }
 
     private boolean abondonner() {
@@ -48,7 +67,7 @@ public class Partie {
             System.out.println("                     Nombre de points gagnés : " + this.nbPointsGangerParLeJoueur
                     + "  Nombre d'animaux sauvés : " + this.nbAnimauxSauves + "\n");
 
-            System.out.println("d : détruire , m : missile");
+            System.out.println("d : Detruire , m : Missile , i : Indice");
             String reponse = scanner.next();
             // traiter le cas de m
             if (reponse.equalsIgnoreCase("m")) {
@@ -78,12 +97,23 @@ public class Partie {
                     coordX = scanner.nextInt();
                     System.out.print("Tapez le n° de la ligne   : ");
                     coordY = scanner.nextInt();
-                    this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX);
+                    this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruire(coordY, coordX, true);
 
                 } catch (InputMismatchException e) {
                     scanner.next();// on pourra traiter le problème du missile ici
                     System.out.println("Entrée non valide");
 
+                }
+            } else if (reponse.equalsIgnoreCase("i")) {
+                if (this.niveauAJouer.getAides().indiceDisponible()) {
+                    ArrayList<Integer> arraylist = this.niveauAJouer.getPlateau().avoirBonCase();
+                    System.out.println("*** la meilleure case à detruire est [ " + arraylist.get(0) + " : "
+                            + arraylist.get(1) + " ] ***");
+                    System.out.println("*** le score à gagner est : " + arraylist.get(2) + " ***");
+                    this.niveauAJouer.getAides().enleverIndice();
+
+                } else {
+                    System.out.println("plus d'indice disponible !");
                 }
             }
             this.niveauAJouer.getPlateau().reorganiserPlateau();
@@ -99,7 +129,6 @@ public class Partie {
         } else {
             System.out.println("La partie est perdue !!");
         }
-        scanner.close();
     }
 
 }
