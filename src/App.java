@@ -13,13 +13,14 @@ public class App {
 
                 Jeu.sauvegarderNiveau(new Niveau(2, new Plateau(Plateau.plateauNiveau2()), new Conditions(3, 260),
                                 new Aide(1, 1, 0)));
-
-                Jeu.lancerJeu();
-                try {
-                        Jeu.joueurEnModeConsole();
-                } catch (Exception e) {
-                        System.out.println(e);
-                }
+                Jeu.sauvegarderNiveau(new Niveau(3, new Plateau(Plateau.plateauNiveau3()), new Conditions(4, 432),
+                                new Aide(1, 0, 1)));
+                // Jeu.lancerJeu();
+                // try {
+                // Jeu.joueurEnModeConsole();
+                // } catch (Exception e) {
+                // System.out.println(e);
+                // }
                 // Scanner sc = new Scanner(System.in);
         }
 }

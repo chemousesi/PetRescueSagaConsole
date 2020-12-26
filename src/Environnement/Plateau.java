@@ -133,6 +133,48 @@ public class Plateau implements Serializable, Cloneable {
         return cases;
     }
 
+    public static Case[][] plateauNiveau3() {
+        Case[][] cases = {
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) },
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Animal(20, "Chat", ""), true), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Animal(20, "Chien", ""), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Obstacle(0, Couleur.gris), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Animal(20, "Chat", ""), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.jaune), true), new Case(new Brique(10, Couleur.jaune), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Animal(20, "Chien", ""), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.violet), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.violet), true),
+                        new Case(new Brique(10, Couleur.rouge), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Brique(10, Couleur.bleu), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.orange), true),
+                        new Case(new Brique(10, Couleur.orange), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
+                { new Case(null, false), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Brique(10, Couleur.rouge), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(new Brique(10, Couleur.bleu), true),
+                        new Case(new Obstacle(0, Couleur.gris), true), new Case(null, false) },
+                { new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false),
+                        new Case(null, false), new Case(null, false), new Case(null, false), new Case(null, false) } };
+
+        return cases;
+    }
+
     public int detruireBriqueAux(int l, int c, Couleur couleur, int acc)
     // acc c'est pour calculer le score qui se multiplie par 2 à chaque fois nous
     // détruisons une brique
