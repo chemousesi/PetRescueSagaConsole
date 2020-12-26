@@ -36,7 +36,7 @@ public class Partie {
         }
         for (int i = 1; i < clone.colonnes - 1; i++) {
             for (int j = 1; j < clone.lignes - 1; j++) {
-                nbPointsGagnes += clone.detruire(i, j, false);
+                nbPointsGagnes += clone.detruire(j, i, false);
                 if (nbPointsGagnes != 0)
                     return false;
             }

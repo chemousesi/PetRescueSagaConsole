@@ -7,14 +7,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.chrono.ChronoPeriod;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Jeu {
     /// ajouter des retouches ici une fois les niveaux sont implementés.
-    private static Niveau niveau[] = new Niveau[2];
-    private static int nbNiveaux = 2;
+    private static Niveau niveau[] = new Niveau[3];
+    private static int nbNiveaux = 3;
     private static ArrayList<Joueur> joueurs;
     private static int nbJoueurs = 1;
     private static Parametres parameteresDuJeu;
@@ -28,6 +29,8 @@ public class Jeu {
     }
 
     private static Partie lancerPartie(Joueur joueur) {
+        if (joueur.getniveauActuel() > nbNiveaux)
+            return null;
         return new Partie(niveau[joueur.getniveauActuel() - 1], joueur);
     }
 
@@ -65,7 +68,16 @@ public class Jeu {
                 switch (choix_2) {
                     case 1:/// jouer.
                         Partie partie = lancerPartie(joueur);
-                        partie.jouerUnePartieModeTexte();
+                        if (partie == null) {
+                            System.out.println("*** Le jeu est terminé ***");
+                            String[] reessayer = { "1- OUI", "2- NON" };
+                            int choix_3 = menuTextuelle(reessayer, "Recommencer ?");
+                            if (choix_3 == 1) {
+                                joueur.setniveauActuel(1);
+                            }
+                        } else {
+                            partie.jouerUnePartieModeTexte();
+                        }
                         break;
                     case 2:/// historique.
                         break;
@@ -83,7 +95,7 @@ public class Jeu {
     private static void telechargerNiveaux() {
         final String niv = "Niveau";
         ObjectInputStream reader;
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= nbNiveaux; i++) {
             try {
                 String path = "src/Niveaux/" + niv + String.valueOf(i) + ".txt";
                 reader = new ObjectInputStream(new FileInputStream(path));
