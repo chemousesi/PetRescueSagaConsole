@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Movible.Case;
+
 public class Partie {
     private Niveau niveauAJouer;
     private Joueur joueur;
@@ -66,7 +68,7 @@ public class Partie {
             System.out.println("                     Nombre de points gagnés : " + this.nbPointsGangerParLeJoueur
                     + "  Nombre d'animaux sauvés : " + this.nbAnimauxSauves + "\n");
 
-            System.out.println("d : Detruire , m : Missile , i : Indice");
+            System.out.println("d : Detruire , m : Missile , i : Indice, b : Bombe");
             String reponse = scanner.next();
             // traiter le cas de m
             if (reponse.equalsIgnoreCase("m")) {
@@ -113,6 +115,31 @@ public class Partie {
 
                 } else {
                     System.out.println("plus d'indice disponible !");
+                }
+            } else if (reponse.equalsIgnoreCase("b")) {
+                if (this.niveauAJouer.getAides().bombesDisponible()) {
+                    int l, c;
+                    System.out.println("--> Indiquer la case à detruire: ");
+                    try {
+
+                        System.out.print("Tapez le n° de la colonne : ");
+                        c = scanner.nextInt();
+                        System.out.print("Tapez le n° de la ligne   : ");
+                        l = scanner.nextInt();
+                        Case caseLC = this.niveauAJouer.getPlateau().getCase(l, c);
+                        if (caseLC.isActive() && !caseLC.estVide() && caseLC.estUneBrique()
+                                && caseLC.getElement().estMobile()) {
+                            this.nbPointsGangerParLeJoueur += this.niveauAJouer.getPlateau().detruireCasesParBombe(l,
+                                    c);
+                            this.niveauAJouer.getAides().enleverBombe();
+                        } else {
+                            System.out.println("*** La case choisie ne se détruit pas ***");
+                        }
+                    } catch (InputMismatchException e) {
+                        scanner.next();// on pourra traiter le problème du missile ici
+                        System.out.println("Entrée non valide");
+
+                    }
                 }
             }
             this.niveauAJouer.getPlateau().reorganiserPlateau();

@@ -39,6 +39,10 @@ public class Aide implements Serializable { /// pour identifier les aides qu'un 
         return nbIndices > 0;
     }
 
+    public boolean bombesDisponible() {
+        return nbBombes > 0;
+    }
+
     public boolean enleverMissile() {
         if (missileDisponible()) {
             nbMissiles--;
@@ -50,6 +54,14 @@ public class Aide implements Serializable { /// pour identifier les aides qu'un 
     public boolean enleverIndice() {
         if (indiceDisponible()) {
             nbIndices--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean enleverBombe() {
+        if (bombesDisponible()) {
+            nbBombes--;
             return true;
         }
         return false;

@@ -461,6 +461,23 @@ public class Plateau implements Serializable, Cloneable {
         return score;
     }
 
+    public int detruireCasesParBombe(int l, int c) {
+        int score = 2;
+        this.cases[l][c].vider();
+
+        if (this.cases[l - 1][c].isActive() && !this.cases[l - 1][c].estVide() && this.cases[l - 1][c].estUneBrique()
+                && this.cases[l - 1][c].getElement().estMobile()) {
+            this.cases[l - 1][c].vider();
+            score += 2;
+        }
+        if (this.cases[l + 1][c].isActive() && !this.cases[l + 1][c].estVide() && this.cases[l + 1][c].estUneBrique()
+                && this.cases[l + 1][c].getElement().estMobile()) {
+            this.cases[l + 1][c].vider();
+            score += 2;
+        }
+        return score;
+    }
+
     public ArrayList<Integer> avoirBonCase() {
         int scoreMax = 0, scoreTemp;
         int l = 1, c = 1;
