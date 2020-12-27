@@ -225,30 +225,34 @@ public class Plateau implements Serializable, Cloneable {
 
     public int detruire(int l, int c, boolean afficher) {
         int score = 0;
-        if (!cases[l][c].estVide()) {
-            if (cases[l][c].estUneBrique() && cases[l][c].getElement().estMobile()) {
-                if (!cases[l - 1][c].estVide() && cases[l - 1][c].estUneBrique()
-                        && cases[l - 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
-                    score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                } else if (!cases[l + 1][c].estVide() && cases[l + 1][c].estUneBrique()
-                        && cases[l + 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
-                    score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                } else if (!cases[l][c + 1].estVide() && cases[l][c + 1].estUneBrique()
-                        && cases[l][c + 1].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
-                    score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                } else if (!cases[l][c - 1].estVide() && cases[l][c - 1].estUneBrique()
-                        && cases[l][c - 1].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
-                    score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
-                }
+        if (l < lignes - 1 && c < colonnes - 1 && l > 0 && c > 0) {
 
+            if (!cases[l][c].estVide()) {
+                if (cases[l][c].estUneBrique() && cases[l][c].getElement().estMobile()) {
+                    if (!cases[l - 1][c].estVide() && cases[l - 1][c].estUneBrique()
+                            && cases[l - 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
+                        score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
+                    } else if (!cases[l + 1][c].estVide() && cases[l + 1][c].estUneBrique()
+                            && cases[l + 1][c].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
+                        score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
+                    } else if (!cases[l][c + 1].estVide() && cases[l][c + 1].estUneBrique()
+                            && cases[l][c + 1].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
+                        score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
+                    } else if (!cases[l][c - 1].estVide() && cases[l][c - 1].estUneBrique()
+                            && cases[l][c - 1].getBrique().getCouleur() == cases[l][c].getBrique().getCouleur()) {
+                        score = detruireBriqueAux(l, c, cases[l][c].getBrique().getCouleur(), 1);
+                    }
+
+                } else {
+                    if (afficher)
+                        System.out.println("*** Ce n'est pas une brique colorée ***");
+                }
             } else {
                 if (afficher)
-                    System.out.println("*** Ce n'est pas une brique colorée ***");
+                    System.out.println("*** La case est vide ***");
             }
-        } else {
-            if (afficher)
-                System.out.println("*** La case est vide ***");
-        }
+        } else
+            System.out.println("*** Case en dehors du plateau ***");
         return score;
     }
 

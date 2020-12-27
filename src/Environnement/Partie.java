@@ -149,6 +149,7 @@ public class Partie {
         if (estGagne()) {
             this.joueur.incrementerNivActuel();
             this.joueur.incrementeScore(nbPointsGangerParLeJoueur + 10 * nbAnimauxSauves);
+            this.joueur.addElemToHistorique(this.niveauAJouer.getNumero(), nbPointsGangerParLeJoueur);
             System.out.println("Le partie est gagné !!!");
         } else if (abondonner) {
             /// traitement ici

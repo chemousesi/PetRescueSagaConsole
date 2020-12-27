@@ -83,6 +83,12 @@ public class Jeu {
                         }
                         break;
                     case 2:/// historique.
+                        System.out.println(
+                                "###################################### HISTORIQUE ######################################\n");
+
+                        joueur.afficherHistoriqueConsole();
+                        System.out.println(
+                                "\n########################################################################################");
                         break;
                     case 3:/// affichage d'un manuel.
                         break;
