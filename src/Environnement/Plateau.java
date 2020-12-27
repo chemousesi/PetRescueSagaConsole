@@ -442,7 +442,7 @@ public class Plateau implements Serializable, Cloneable {
 
     public int detruireColonneParMissile(int c) {
         // retourne le score fait par les distructions par missile
-        int score = 0;
+        int score = 1;
 
         // traiter le cas de la colonne hors jeu
         if (c < 1 || c > cases[0].length - 1) {
@@ -454,7 +454,7 @@ public class Plateau implements Serializable, Cloneable {
         for (int i = 1; i < cases.length - 1; i++) {
             if (!cases[i][c].estVide() && cases[i][c].estUneBrique() && cases[i][c].getElement().estMobile()) {
                 cases[i][c].vider();
-                score += 10;
+                score *= 2;
             }
         }
         // Attention cette fonction n'appelle pas la réorganisation automatiqument
@@ -468,12 +468,12 @@ public class Plateau implements Serializable, Cloneable {
         if (this.cases[l - 1][c].isActive() && !this.cases[l - 1][c].estVide() && this.cases[l - 1][c].estUneBrique()
                 && this.cases[l - 1][c].getElement().estMobile()) {
             this.cases[l - 1][c].vider();
-            score += 2;
+            score *= 2;
         }
         if (this.cases[l + 1][c].isActive() && !this.cases[l + 1][c].estVide() && this.cases[l + 1][c].estUneBrique()
                 && this.cases[l + 1][c].getElement().estMobile()) {
             this.cases[l + 1][c].vider();
-            score += 2;
+            score *= 2;
         }
         return score;
     }
