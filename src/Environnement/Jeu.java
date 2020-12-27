@@ -91,6 +91,7 @@ public class Jeu {
                                 "\n########################################################################################");
                         break;
                     case 3:/// affichage d'un manuel.
+                        help();
                         break;
                     case 4: /// deconnexion.
                         System.out.println("Deconnxion du compte.");
@@ -99,6 +100,20 @@ public class Jeu {
                 }
             }
         }
+    }
+
+    public static void help() {
+        System.out.println(
+                "###################################### Aide & Informations ######################################\n");
+        System.out.println("1- Pour séléctionner une case à detruire indiquez juste le n° de la ligne et colonne.");
+        System.out.println("2- Pour utiliser un missile indiquez le n° de la colonne à detruire.");
+        System.out.println("3- Pour utiliser une bombe sélectionnez la case par son n° de ligne et colonne.");
+        System.out.println(
+                "4- Une bombe détruit la case sélectionnée avec les deux cases au dessus et en dessous horizentalement.");
+        System.out.println("5- Indice vous donne les coordonnées de la meilleure case à detruire.");
+        System.out.println("6- Le score est calculé par la formule : 2 ^ nombre de cases détruites.");
+        System.out.println(
+                "\n#################################################################################################");
     }
 
     private static void telechargerNiveaux() {
